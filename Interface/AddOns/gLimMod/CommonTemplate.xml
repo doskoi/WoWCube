@@ -1,0 +1,100 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+<!-- 黑眼圈 Create 05.02.06 Cube -->
+
+	<!-- gLimMod Font Start -->
+	<Font name="gLimNormalFont" inherits="GameFontNormal" virtual="true">
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		<Color r="1.0" g="0.82" b="0"/>
+	</Font>
+	<Font name="gLimDisableFont" inherits="gLimNormalFont" virtual="true">
+		<Color r="0.5" g="0.5" b="0.5"/>
+	</Font>
+	<Font name="gLimHighlightFont" inherits="gLimNormalFont" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+		  <Shadow>
+			<Color r="0" g="0" b="0" />
+			<Offset>
+			  <AbsDimension x="2" y="-2" />
+			</Offset>
+		  </Shadow>
+	</Font>
+	<Font name="gLimCareFont" inherits="gLimHighlightFont" virtual="true">
+		<Color r="1" g="0.5" b="0"/>
+	</Font>
+	<Font name="gLimLargeHighlightFont" inherits="gLimHighlightFont" virtual="true">
+		<FontHeight>
+			<AbsValue val="14"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	<Font name="gLimSmallFont" inherits="GameFontNormalSmall" virtual="true">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0" g="0" b="0"/>
+		</Shadow>
+		<Color r="1.0" g="0.82" b="0"/>
+	</Font>
+	<Font name="gLimHighlightSmallFont" inherits="gLimSmallFont" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	<Font name="gLimSmallPurpleFont" inherits="gLimSmallFont" virtual="true">
+		<Color r="0.5" g="0.5" b="1.0"/>
+	</Font>
+	<Font name="gLimVerySmallFont" inherits="MasterFont" font="Fonts\ARIALN.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="9"/>
+		</FontHeight>
+		<Color r="1.0" g="0.82" b="0"/>
+	</Font>
+	<Font name="gLimVertSmallHighlightFont" inherits="gLimVerySmallFont" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</Font>
+	<Font name="NumberSmallFont" inherits="MasterFont" font="Fonts\FRIZQT__.TTF" virtual="true">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		<Color r="1.0" g="0.82" b="0"/>
+	</Font>
+	<Font name="NumberHugeFont" inherits="NumberSmallFont" virtual="true">
+		<FontHeight>
+			<AbsValue val="20"/>
+		</FontHeight>
+	</Font>
+	<Font name="gLimConfigFont" inherits="GameFontNormal" virtual="true">
+		<FontHeight>
+			<AbsValue val="16"/>
+		</FontHeight>
+		  <Color r="1" g="0.82" b="0" />
+		  <Shadow>
+			<Color r="0" g="0" b="0" />
+			<Offset>
+			  <AbsDimension x="2" y="-2" />
+			</Offset>
+		  </Shadow>
+	</Font>
+	<!-- gLimMod Font End -->
+
+	<Button name="CubeMenuButtonTemplate" inherits="UIPanelButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="144" y="21"/>
+		</Size>
+		<NormalText inherits="gLimNormalFont"/>
+		<DisabledText inherits="gLimDisableFont"/>
+		<HighlightText inherits="gLimHighlightFont"/>
+	</Button>
+</Ui>

@@ -1,0 +1,41 @@
+## Title: Enchantrix
+## Title-zhCN: 附魔助手
+## Title-zhTW: 附魔助手
+## Notes: Display information in item tooltips pertaining to the results of disenchanting said item.  [5.1.3908] This AddOn is licensed under the GNU GPL, see GPL.txt for details.
+## Notes-zhCN: 动态加载附魔师
+## Notes-zhTW: 動態加載附魔師
+## Interface: 30000
+## LoadOnDemand: 1
+## Dependencies: Stubby
+## OptionalDeps: !nLog, Babylonian, DebugLib, Configator, SlideBar, LibExtraTip, TipHelper
+## SavedVariables: EnchantConfig, EnchantedLocal, EnchantedItemTypes, NonDisenchantablesLocal, ProspectedLocal, MillingLocal
+## SavedVariablesPerCharacter: AutoDisenchantIgnoreList
+##
+## Version: 5.2.4013 (DingoII)
+## Revision: $Id: Enchantrix.toc 3767 2008-11-05 17:57:29Z Norganna $
+## URL: http://enchantrix.org
+## X-Revision: gLimMod
+Support\Load.xml
+EnxManifest.lua
+
+Libs\Load.xml
+
+EnxObjects.lua
+
+EnxStrings.lua
+EnxLocale.lua
+
+Data\EnxNonDisenchant.lua
+
+EnxSettings.lua
+EnxMiniIcon.lua
+EnxCommand.lua
+EnxConfig.lua
+EnxConstants.lua
+EnxStorage.lua
+EnxTooltip.lua
+EnxUtil.lua
+EnxAutoDisenchant.lua
+EnxMain.lua
+
+EnxAucUtil.lua

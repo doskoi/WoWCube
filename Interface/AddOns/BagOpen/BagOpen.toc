@@ -1,0 +1,11 @@
+## Interface: 30000
+## Title: Bag Open
+## Notes: Open your bags with your fire a NPC
+## Title-zhCN: 包裹全开
+## Notes-zhCN: 和NPC对话时自动打开所有包裹
+## Title-zhTW: 包裹全開
+## Notes-zhTW: 和NPC對話時自動打開所有包裹
+## Dependencies: gLimMod
+## SavedVariables: BagSet,gLim_KeepBagOpen,gLim_openallbag
+## X-Revision: gLimMod
+BagOpen.xml

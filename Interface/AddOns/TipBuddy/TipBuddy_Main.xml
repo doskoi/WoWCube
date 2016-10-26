@@ -1,0 +1,1468 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+
+	<!-- Template: Buff -->
+	<Frame name="TipBuddy_Buff_Template" hidden="true" virtual="true">
+		<Size x="16" y="16"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIcon" file="Interface\Icons\INV_MISC_Book_02">
+					<Size x="16" y="16"/>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<!-- Template: Fonts -->
+	<FontString name="TBGameFontNormal" inherits="GameFontNormal" virtual="true">
+		<FontHeight>
+			<AbsValue val="10"/>
+		</FontHeight>
+		<Color r="1.0" g="0.82" b="0"/>
+	</FontString>
+	<FontString name="TBGameFontHighlight" inherits="TBGameFontNormal" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+	<FontString name="TBGameFontDisable" inherits="TBGameFontNormal" virtual="true">
+		<Color r="0.5" g="0.5" b="0.5"/>
+	</FontString>
+
+	<FontString name="TBGameFontNormalSmall" inherits="GameFontNormalSmall" virtual="true">
+		<FontHeight>
+			<AbsValue val="7"/>
+		</FontHeight>
+		<Color r="1.0" g="0.82" b="0"/>
+	</FontString>
+	<FontString name="TBGameFontHighlightSmall" inherits="TBGameFontNormalSmall" virtual="true">
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+
+	<FontString name="ToolTipBuddyText" inherits="GameTooltipText" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="11"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+<!--		<Shadow>
+			<Offset>
+				<AbsDimension x="0.75" y="-0.75"/>
+			</Offset>
+			<Color r=".4" g="0.4" b="0.4"/>
+		</Shadow> -->
+	</FontString>
+
+	<FontString name="ToolTipBuddyTextOutline" inherits="GameFontNormal" justifyH="LEFT" outline="NORMAL" virtual="true">
+		<FontHeight>
+			<AbsValue val="15"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+
+	<FontString name="TB_HealthText" inherits="NumberFontNormal" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="14"/>
+		</FontHeight>
+		<Color r="0.9" g="0.9" b="0.9"/>
+<!--		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0.1" g="0.1" b="0.1"/>
+		</Shadow> -->
+	</FontString>
+	<FontString name="TB_ManaText" inherits="NumberFontNormal" outline="NORMAL" justifyH="LEFT" virtual="true">
+		<FontHeight>
+			<AbsValue val="12"/>
+		</FontHeight>
+		<Color r="0.9" g="0.9" b="0.9"/>
+<!--		<Shadow>
+			<Offset>
+				<AbsDimension x="1" y="-1"/>
+			</Offset>
+			<Color r="0.1" g="0.1" b="0.1"/>
+		</Shadow> -->
+	</FontString>
+
+	<FontString name="TB_TTGameFontNormalSmall" inherits="GameFontNormalSmall" virtual="true">
+		<FontHeight>
+			<AbsValue val="9"/>
+		</FontHeight>
+		<Color r="1.0" g="0.82" b="0"/>
+	</FontString>
+	<FontString name="TB_TTGameFontNormalSmallHighlight" inherits="GameFontNormalSmall" virtual="true">
+		<FontHeight>
+			<AbsValue val="9"/>
+		</FontHeight>
+		<Color r="1.0" g="1.0" b="1.0"/>
+	</FontString>
+
+
+	<!-- TIPBUDDY ANCHOR HEADER -->
+	<Button name="TipBuddy_Header_Frame" frameStrata="HIGH" movable="true" hidden="true" parent="UIParent" enableMouse="true">
+		<Size x="128" y="20"/>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="UIParent" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="202" y="400"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="8"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="2" right="2" top="2" bottom="2"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="TipBuddy_Header_Text" inherits="ToolTipBuddyText" text="TipBuddyAnchor" justifyH="LEFT">
+					<Size x="128" y="24"/>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="4" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="ToolTipBuddyText" hidden="true">
+					<Size x="128" y="24"/>
+					<Anchors>
+						<Anchor point="LEFT"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="TipBuddy_Header_CloseButton">
+				<Size x="24" y="24"/>
+				<Anchors>
+					<Anchor point="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetAlpha(0.6);
+					</OnLoad>
+					<OnClick>
+						HideUIPanel(TipBuddy_Header_Frame);
+					</OnClick>
+					<OnEnter>
+						TipBuddy_Header_Frame:SetAlpha(0.9);
+						GameTooltip_SetDefaultAnchor(GameTooltip, this);
+						GameTooltip:SetText(TB_TIPBUDDYANCHORCLOSE_TOOLTIP, nil, nil, nil, nil, 1);
+					</OnEnter>
+					<OnLeave>
+						TipBuddy_Header_Frame:SetAlpha(0.1);
+						GameTooltip:Hide();
+					</OnLeave>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Down"/>
+				<HighlightTexture file="Interface\Buttons\UI-Panel-MinimizeButton-Highlight" alphaMode="ADD"/>
+			</Button>
+			<Frame name="TipBuddy_Header_FrameDropDown" inherits="UIDropDownMenuTemplate" hidden="true" enableMouse="true">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						TipBuddy_AnchorDropDown_OnLoad();
+					</OnLoad>
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonDown", "LeftButtonUp", "RightButtonUp");
+				this:RegisterForDrag("LeftButton");
+				this:SetBackdropBorderColor(0.1, 0.1, 0.1);
+				this:SetBackdropColor(0.09, 0.09, 0.19);
+				this:SetAlpha(0.1);
+			</OnLoad>
+			<OnEnter>
+				TipBuddy.anchor, TipBuddy.fanchor, TipBuddy.offset = TipBuddy_GetFrameAnchorPos();
+				if (TipBuddy_SavedVars["general"].anchored == 1) then
+					TipBuddy_Parent_Frame:SetPoint(TipBuddy.anchor, "TipBuddy_Header_Frame", TipBuddy.fanchor, 0, 0);
+				end
+				this:SetAlpha(0.9);
+				GameTooltip_SetDefaultAnchor(GameTooltip, TipBuddy_Parent_Frame);
+				GameTooltip:SetText(TB_TIPBUDDYANCHOR_TOOLTIP, nil, nil, nil, nil, 1);
+				TipBuddy_SavedVars["general"].framepos_L = TipBuddy_Header_Frame:GetLeft();
+				TipBuddy_SavedVars["general"].framepos_T = TipBuddy_Header_Frame:GetTop();
+			</OnEnter>
+			<OnLeave>
+				this:SetAlpha(0.1);
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				PlaySound("UChatScrollButton");
+				GameTooltip:Hide();
+			</OnClick>
+			<OnMouseDown>
+				TipBuddy_OnMouseDown(arg1);
+			</OnMouseDown>
+			<OnMouseUp>
+				TipBuddy_OnMouseUp(arg1);
+			</OnMouseUp>
+			<OnShow>
+				this:SetAlpha(0.75);
+				UIFrameFlash(TipBuddy_Header_FlashFrame, 0.3, 2.5, 2.9, nil, 0.1, 0);
+				TipBuddy_SavedVars["general"].anchor_vis = 1;
+			</OnShow>
+			<OnHide>
+				TipBuddy_SavedVars["general"].anchor_vis = 0;
+			</OnHide>
+		</Scripts>
+	</Button>
+	<!-- TIPBUDDY ANCHOR FLASH -->
+	<Frame name="TipBuddy_Header_FlashFrame" frameStrata="HIGH" hidden="true" parent="TipBuddy_Header_Frame">
+		<Size x="128" y="128"/>
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="TipBuddy_Header_Frame" relativePoint="LEFT">
+				<Offset>
+					<AbsDimension x="8" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentShine" file="Interface\Cooldown\star4" alphaMode="ADD">
+					<Size x="120" y="128"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="$parent" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="8" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnLoad>
+				TipBuddy_Header_FlashFrameShine:SetVertexColor(0.5, 0.7, 1, 1);
+			</OnLoad>
+		</Scripts>
+	</Frame>
+
+
+	<!-- Parent Tooltip Frame -->
+	<Frame name="TipBuddy_Parent_Frame" frameStrata="TOOLTIP" parent="UIParent">
+		<Size x="2" y="2"/>
+		<Scripts>
+			<OnLoad>
+				TipBuddy_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				TipBuddy_OnEvent();
+			</OnEvent>
+			<OnUpdate>
+				if (GameTooltip:IsVisible() or TipBuddyTooltip:IsVisible() or TipBuddy_Main_Frame:IsVisible()) then
+					TipBuddy_ParentTip_OnUpdate();
+				end
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+ 	<GameTooltip name="TipBuddyTooltip" frameStrata="TOOLTIP" hidden="true" parent="UIParent" inherits="GameTooltipTemplate">
+		<Scripts>
+			<OnLoad>
+				GameTooltip_OnLoad(self);
+				this:SetOwner(TipBuddy_Parent_Frame,"ANCHOR_RIGHT");
+			</OnLoad>
+			<OnEvent>
+			</OnEvent>
+			<OnShow>
+				--TB_AddMessage("showing");
+				--GameTooltip:SetAlpha(0);
+			</OnShow>
+			<OnHide>
+				GameTooltip_OnHide(self);
+			</OnHide>
+			<OnUpdate>
+				TipBuddyTooltip_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+	</GameTooltip>
+
+	<Frame name="TipBuddy_Main_Frame" frameStrata="TOOLTIP" hidden="true" parent="TipBuddy_Parent_Frame">
+		<Size x="62" y="32"/>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<!-- bgFile="Interface\\AddOns\\TipBuddy\\gfx\\UI-Tooltip-Background" -->
+			<!-- bgFile="Interface\Tooltips\UI-Tooltip-Background" -->
+			<EdgeSize>
+				<AbsValue val="8"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="2" right="2" top="2" bottom="2"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Scripts>
+			<OnShow>
+				TipBuddy_SetFrame_Anchor(this);
+			</OnShow>
+			<OnHide>
+				TipBuddy_SetFrame_BackgroundColor();
+				TipBuddy.compactvis = nil;
+			</OnHide>
+			<OnUpdate>
+				TipBuddy_MainTip_OnUpdate();
+			</OnUpdate>
+		</Scripts>
+		<Frames>
+		<!-- HEALTH / MANA -->
+<!-- 			<Frame name="TipBuddy_TargetHealthManaFrame" parent="TipBuddy_Main_Frame">
+				<Size x="64" y="4"/>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="TipBuddy_Main_Frame" relativePoint="CENTER">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						TipBuddy_OnLoad("mouseover");
+					</OnLoad>
+				</Scripts>
+				<Frames> -->
+					<StatusBar name="TipBuddy_TargetFrameHealthBar" enableMouse="false" inherits="TextStatusBar" parent="TipBuddy_Main_Frame">
+						<Size x="64" y="4"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TipBuddy_Main_Frame" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-3"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.unit = "mouseover";
+								this:RegisterEvent("UNIT_HEALTH");
+								this:RegisterEvent("UNIT_MAXHEALTH");
+								TextStatusBar_Initialize(self);
+								this.textLockable = 1;
+							</OnLoad>
+							<OnEvent>
+								UnitFrameHealthBar_Update(this, arg1);
+							</OnEvent>
+							<OnValueChanged>
+								UnitFrameHealthBar_OnValueChanged(arg1);
+							</OnValueChanged>
+						</Scripts>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+					</StatusBar>
+
+					<StatusBar name="TipBuddy_TargetFrameManaBar" enableMouse="false" inherits="TextStatusBar" parent="TipBuddy_Main_Frame">
+						<Size x="64" y="4"/>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="TipBuddy_TargetFrameHealthBar" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="-3.5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.unit = "mouseover";
+								this:RegisterEvent("UNIT_MANA");
+								this:RegisterEvent("UNIT_RAGE");
+								this:RegisterEvent("UNIT_FOCUS");
+								this:RegisterEvent("UNIT_ENERGY");
+								this:RegisterEvent("UNIT_HAPPINESS");
+								this:RegisterEvent("UNIT_MAXMANA");
+								this:RegisterEvent("UNIT_MAXRAGE");
+								this:RegisterEvent("UNIT_MAXFOCUS");
+								this:RegisterEvent("UNIT_MAXENERGY");
+								this:RegisterEvent("UNIT_MAXHAPPINESS");
+								this:RegisterEvent("UNIT_DISPLAYPOWER");
+								TextStatusBar_Initialize(self);
+								this.textLockable = 1;
+							</OnLoad>
+							<OnEvent>
+								UnitFrameManaBar_Update(this, arg1);
+							</OnEvent>
+						</Scripts>
+						<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+						<BarColor r="0" g="0" b="1.0"/>
+					</StatusBar>
+
+					<Frame name="TipBuddy_HealthText" frameStrata="TOOLTIP" parent="TipBuddy_TargetFrameHealthBar">
+						<Size x="38" y="38"/>
+						<Anchors>
+							<Anchor point="CENTER" relativeTo="TipBuddy_TargetFrameHealthBar" relativePoint="CENTER">
+								<Offset>
+									<AbsDimension x="0" y="0.5"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="OVERLAY">
+								<FontString name="$parentText" inherits="TB_HealthText" justifyH="CENTER">
+									<Size x="256" y="12"/>
+									<Anchors>
+										<Anchor point="CENTER">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+					<Frame name="TipBuddy_ManaText" frameStrata="TOOLTIP" parent="TipBuddy_TargetFrameManaBar">
+						<Size x="38" y="38"/>
+						<Anchors>
+							<Anchor point="CENTER" relativeTo="TipBuddy_TargetFrameManaBar" relativePoint="CENTER">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Layers>
+							<Layer level="OVERLAY">
+								<FontString name="$parentText" inherits="TB_ManaText" justifyH="CENTER">
+									<Size x="256" y="8"/>
+									<Anchors>
+										<Anchor point="CENTER">
+											<Offset>
+												<AbsDimension x="0" y="0"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+<!-- 				</Frames>
+			</Frame> -->
+			</Frames>
+		<Layers>
+
+<!-- NAME -->
+			<Layer level="OVERLAY">
+				<FontString name="TipBuddy_TargetName_Text" inherits="ToolTipBuddyText" text="Unknown" justifyH="LEFT">
+					<Size x="400" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Main_Frame" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="1" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_TargetName_TextR" inherits="ToolTipBuddyText" text="" justifyH="RIGHT">
+					<Size x="400" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_Main_Frame" relativePoint="TOPRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+
+<!-- GUILD -->
+
+			<Layer level="OVERLAY">
+				<FontString name="TipBuddy_TargetGuild_Text" inherits="ToolTipBuddyText" text="None" justifyH="LEFT">
+					<Size x="256" y="9"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_TargetName_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_TargetGuild_TextR" inherits="ToolTipBuddyText" text="" justifyH="RIGHT">
+					<Size x="256" y="9"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_TargetName_TextR" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+
+<!-- CITY FACTION -->
+
+			<Layer level="OVERLAY">
+				<FontString name="TipBuddy_TargetCityFac_Text" inherits="ToolTipBuddyText" text="--" justifyH="LEFT">
+					<Size x="128" y="11"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_TargetGuild_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="1" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_TargetCityFac_TextR" inherits="ToolTipBuddyText" text="" justifyH="RIGHT">
+					<Size x="128" y="11"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_TargetGuild_TextR" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+
+<!-- LEVEL -->
+
+			<Layer level="OVERLAY">
+				<FontString name="TipBuddy_TargetLevel_Text" inherits="ToolTipBuddyText" text="--" justifyH="LEFT">
+					<Size x="64" y="11"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_TargetCityFac_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+<!-- CLASS -->
+
+			<Layer level="OVERLAY">
+				<FontString name="TipBuddy_TargetClass_Text" inherits="ToolTipBuddyText" text="--" justifyH="RIGHT">
+					<Size x="128" y="11"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_TargetCityFac_TextR" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+<!-- XTRAs -->
+
+			<Layer level="OVERLAY">
+				<FontString name="TipBuddy_Xtra1_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_TargetLevel_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra2_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra1_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra3_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra2_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra4_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra3_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra5_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra4_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra6_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra5_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra7_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra6_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra8_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra7_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra9_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra8_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra10_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra9_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra11_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra10_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra12_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra11_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra13_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra12_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra14_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra13_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra15_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra14_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra16_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra15_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra17_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra16_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra18_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra17_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra19_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra18_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_Xtra20_Text" inherits="ToolTipBuddyText" justifyH="LEFT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="TipBuddy_Xtra19_Text" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+				<FontString name="TipBuddy_XtraR1_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_TargetClass_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR2_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR1_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR3_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR2_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR4_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR3_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR5_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR4_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR6_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR5_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR7_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR6_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR8_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR7_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR9_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR8_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR10_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR9_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR11_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR10_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR12_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR11_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR13_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR12_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR14_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR13_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR15_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR14_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR16_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR15_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR17_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR16_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR18_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR17_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR19_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR18_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="TipBuddy_XtraR20_Text" inherits="ToolTipBuddyText" justifyH="RIGHT">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="TipBuddy_XtraR19_Text" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="0" y="-1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+
+			</Layer>
+		</Layers>
+	</Frame>
+
+<!-- RANK ICONS -->
+	<Frame name="TipBuddy_RankFrame" frameStrata="TOOLTIP" hidden="true" parent="TipBuddy_Main_Frame">
+		<Size x="16" y="16"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="TipBuddy_Main_Frame" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentIcon">
+					<Size x="16" y="16"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="TipBuddy_RankFrameGTT" frameStrata="TOOLTIP" hidden="true" parent="TipBuddyTooltip">
+		<Size x="18" y="18"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="TipBuddyTooltip" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-5"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture name="$parentIcon">
+					<Size x="18" y="18"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+		</Scripts>
+	</Frame>
+
+<!-- FACTION ICONS -->
+	<Frame name="TipBuddy_FactionFrame" frameStrata="TOOLTIP" hidden="true" parent="TipBuddy_Main_Frame">
+		<Size x="30" y="30"/>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="TipBuddy_Main_Frame" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-3" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKROUND">
+				<Texture name="$parentIcon" file="Interface\TargetingFrame\UI-PVP-FFA">
+					<Size x="30" y="30"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="ToolTipBuddyTextOutline" justifyH="LEFT" text="PvP">
+					<Size x="64" y="16"/>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="1.5" y="8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="TipBuddy_FactionFrameGTT" frameStrata="TOOLTIP" hidden="true" parent="TipBuddyTooltip">
+		<Size x="38" y="38"/>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="TipBuddyTooltip" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-3" y="-4"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="BACKROUND">
+				<Texture name="$parentIcon" file="Interface\TargetingFrame\UI-PVP-FFA">
+					<Size x="38" y="38"/>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="ToolTipBuddyTextOutline" justifyH="LEFT" text="PvP">
+					<Size x="64" y="16"/>
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="1.5" y="8"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="TipBuddy_HealthTextGTT" frameStrata="TOOLTIP" parent="TipBuddyTooltipStatusBar">
+		<Size x="38" y="38"/>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="TB_HealthText" justifyH="CENTER">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="TipBuddy_ManaTextGTT" frameStrata="TOOLTIP" parent="TipBuddyTooltipStatusBar">
+		<Size x="38" y="38"/>
+		<Anchors>
+			<Anchor point="CENTER" relativeTo="TipBuddy_HealthTextGTT" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="0" y="8"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+				<FontString name="$parentText" inherits="TB_ManaText" justifyH="CENTER">
+					<Size x="256" y="12"/>
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<Frame name="TipBuddy_BuffFrame" frameStrata="TOOLTIP" parent="TipBuddy_Main_Frame">
+		<Size x="16" y="16"/>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Frame name="$parentB1" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="TipBuddy_Main_Frame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB2" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB3" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB4" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB5" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB6" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB7" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB8" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+
+			<Frame name="$parentD1" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TipBuddy_Main_Frame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD2" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD3" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD4" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD5" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD6" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD7" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD8" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+
+		</Frames>
+	</Frame>
+
+
+	<Frame name="TipBuddy_BuffFrameGTT" frameStrata="TOOLTIP" parent="TipBuddyTooltip">
+		<Size x="16" y="16"/>
+		<Frames>
+			<Frame name="$parentB1" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="TipBuddyTooltip" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="4" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB2" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB3" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB4" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB5" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB6" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB7" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentB8" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentB7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+
+			<Frame name="$parentD1" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="TipBuddyTooltipStatusBar" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="-2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						if (TipBuddyTooltipStatusBar:IsVisible()) then
+							this:ClearAllPoints();
+							this:SetPoint("TOPLEFT","TipBuddyTooltipStatusBar","BOTTOMLEFT",0,-1);
+						else
+							this:ClearAllPoints();
+							this:SetPoint("TOPLEFT","TipBuddyTooltip","BOTTOMLEFT",4,-1);
+						end
+					</OnShow>
+				</Scripts>
+			</Frame>
+			<Frame name="$parentD2" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD1" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD3" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD2" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD4" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD3" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD5" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD4" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD6" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD5" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD7" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD6" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="$parentD8" inherits="TipBuddy_Buff_Template">
+				<Anchors>
+					<Anchor point="LEFT" relativeTo="$parentD7" relativePoint="RIGHT">
+						<Offset>
+							<AbsDimension x="2" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+
+		</Frames>
+	</Frame>
+
+	<!-- THIS IS A HORRIBLE HACK because bliz harcodes the target's tooltip to show on TextStatusBar mouseover :( -->
+	<Frame name="TipBuddy_TargetFrameBarCover" toplevel="true" parent="TargetFrame">
+		<Size x="121" y="26"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-106" y="-41"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnEnter>
+				--this.unit = TargetFrame.unit;
+				--UnitFrame_OnEnter();
+				--GameTooltip:SetUnit(TargetFrame.unit);
+			</OnEnter>
+			<OnLeave>
+				UnitFrame_OnLeave();
+			</OnLeave>
+		</Scripts>
+		<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+	</Frame>
+</Ui>

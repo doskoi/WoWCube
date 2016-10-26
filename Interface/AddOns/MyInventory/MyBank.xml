@@ -1,0 +1,705 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="localization.lua"/> 
+	<Script file="MyBank_Config.lua"/>
+	<Script file="MyBank.lua"/> 
+	<Script file="MyBank_TextFns.lua"/>
+	<!-- BEGIN TEMPLATES -->
+	<Button name="MyBankButtonTemplate" inherits="ItemButtonTemplate" hidden="true" virtual="true">
+		<Anchors>
+			<Anchor point="BOTTOMRIGHT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnEnter>
+				MyBankFrame_Button_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				MyBankFrame_Button_OnLeave();
+			</OnLeave>
+		</Scripts>
+	</Button>
+	<Button name="MyBankFrameItemButtonTemplate" inherits="MyBankButtonTemplate" hidden="true" virtual="true">
+		<Frames>
+			<Cooldown name="$parentCooldown" inherits="CooldownFrameTemplate"/>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				MyBankFrameItemButton_OnLoad();
+			</OnLoad>
+			<OnHide>
+				if ( this.hasStackSplit and (this.hasStackSplit == 1) ) then
+					StackSplitFrame:Hide();
+				end
+			</OnHide>
+			<OnClick>
+				MyBankFrameItemButton_OnClick(arg1);
+			</OnClick>
+			<OnDragStart>
+				MyBankFrameItemButton_OnClick("LeftButton",1);
+			</OnDragStart>
+			<OnReceiveDrag>
+				MyBankFrameItemButton_OnClick("LeftButton",1);
+			</OnReceiveDrag>
+		</Scripts>
+	</Button>
+	<Button name="MyBankBagButtonTemplate" inherits="MyBankButtonTemplate" hidden="false" virtual="true">
+		<CheckedTexture alphaMode="ADD" file="Interface\Buttons\ButtonHilight-Square"/>
+		<HighlightTexture alphaMode="ADD" file="Interface\Buttons\CheckButtonHilight"/>
+		<Scripts>
+			<OnLoad>
+				this.isBag = 1;
+				MyBankFrameItemButton_OnLoad();
+			</OnLoad>
+			<OnClick>
+				if ( IsShiftKeyDown() ) then
+					MyBankFrameItemButtonBag_OnShiftClick();
+				else
+					MyBankFrameItemButtonBag_OnClick(arg1);
+				end
+			</OnClick>
+			<OnDragStart>
+				MyBankFrameItemButtonBag_OnShiftClick("LeftButton",1);
+			</OnDragStart>
+			<OnReceiveDrag>
+				MyBankFrameItemButtonBag_OnClick("LeftButton", 1);
+			</OnReceiveDrag>
+		</Scripts>
+	</Button>
+	<!-- BEGIN REAL FRAMES -->
+	<Frame name="MyBankFrame" frameStrata="MEDIUM" parent="UIParent" toplevel="true" movable="true" resizable="true" enableMouse="true" hidden="true" clampedToScreen="true">
+		<Size><AbsDimension x="350" y="500"/></Size>
+		<Anchors>
+			<Anchor point="LEFT" >
+				<Offset><AbsDimension x="25" y="0"/></Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop name="MyBankFrameBackdrop" bgFile="Interface\MyInventory\Skin\Backpack" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<BackgroundInsets><AbsInset left="5" right="5" top="5" bottom="5"/></BackgroundInsets>
+			<TileSize><AbsValue val="16"/></TileSize>
+			<EdgeSize><AbsValue val="16"/></EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentPortrait" hidden="true" file="Interface\MERCHANTFRAME\UI-BuyBack-Icon" >
+					<Size><AbsDimension x="58" y="58"/></Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset><AbsDimension x="-7" y="2"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+							
+				<Texture name="$parentTextureTopLeft" file="Interface\AddOns\MyInventory\Skin\TopLeft" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset><AbsDimension x="-67" y="60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureTopRight" file="Interface\AddOns\MyInventory\Skin\TopRight" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT"> 
+							<Offset><AbsDimension x="36" y="60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureTopCenter" file="Interface\AddOns\MyInventory\Skin\TopCenter" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentTextureTopLeft" relativePoint="BOTTOMRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentTextureTopRight" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+				</Texture>
+
+				<Texture name="$parentTextureBottomLeft" file="Interface\AddOns\MyInventory\Skin\BottomLeft" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset><AbsDimension x="-67" y="-60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureBottomRight" file="Interface\AddOns\MyInventory\Skin\BottomRight" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="BOTTOMRIGHT"> 
+							<Offset><AbsDimension x="36" y="-60"/></Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureBottomCenter" file="Interface\AddOns\MyInventory\Skin\BottomCenter" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextureBottomLeft" relativePoint="TOPRIGHT"/>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextureBottomRight" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+
+				<Texture name="$parentTextureLeft" file="Interface\AddOns\MyInventory\Skin\Left" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextureTopLeft" relativePoint="BOTTOMRIGHT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentTextureBottomLeft" relativePoint="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureRight" file="Interface\AddOns\MyInventory\Skin\Right" hidden="true">
+					<Size>
+						<AbsDimension x="64" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextureTopRight" relativePoint="BOTTOMLEFT"/>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentTextureBottomRight" relativePoint="TOPLEFT"/>
+					</Anchors>
+				</Texture>
+				<Texture name="$parentTextureCenter" file="Interface\AddOns\MyInventory\Skin\Center" hidden="true">
+					<Size>
+						<AbsDimension x="128" y="128"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeTo="$parentTextureTopCenter" relativePoint="BOTTOMLEFT"/>
+						<Anchor point="TOPRIGHT" relativeTo="$parentTextureTopCenter" relativePoint="BOTTOMRIGHT"/>
+						<Anchor point="BOTTOMLEFT" relativeTo="$parentTextureBottomCenter" relativePoint="TOPLEFT"/>
+						<Anchor point="BOTTOMRIGHT" relativeTo="$parentTextureBottomCenter" relativePoint="TOPRIGHT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentName" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset><AbsDimension x="7" y="-6"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="MyBankFrameAtBankText" inherits="GameFontNormal" justifyH="LEFT" text="MYBANK_ATBANK" hidden="true">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentName" relativePoint="RIGHT">
+							<Offset><AbsDimension x="7" y="0"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentSlots" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT">
+							<Offset><AbsDimension x="7" y="15"/></Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+		<Frame name="MyBankFramePurchaseInfo" hidden="false">
+			<Size>
+				<AbsDimension x="200" y="23" />
+			</Size>
+			<Anchors>
+				<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+					<Offset>
+						<AbsDimension x="-15" y="10"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Frames>
+				<Button name="MyBankFramePurchaseButton" inherits="UIPanelButtonTemplate" disabled="true" virtual="true" text="MYBANK_FRAME_BUY">
+					<Size>
+						<AbsDimension x="64" y="21"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnClick>
+							PlaySound("igMainMenuOption");
+							PurchaseSlot();
+						</OnClick>
+					</Scripts>
+				</Button>
+				<Frame name="MyBankFrameDetailMoneyFrame" inherits="SmallMoneyFrameTemplate" hidden="false">
+					<Anchors>
+						<Anchor point="RIGHT" relativeTo="MyBankFramePurchaseButton" relativePoint="LEFT">
+							<Offset>
+								<AbsDimension x="-5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Scripts>
+						<OnLoad>
+							SmallMoneyFrame_OnLoad(self);
+							MoneyFrame_SetType(self,"STATIC");
+						</OnLoad>
+					</Scripts>
+				</Frame>
+			</Frames>
+		</Frame>	 
+	
+      <Button name="$parentItem1" inherits="MyBankFrameItemButtonTemplate" id="1"/>
+      <Button name="$parentItem2" inherits="MyBankFrameItemButtonTemplate" id="2"/>
+      <Button name="$parentItem3" inherits="MyBankFrameItemButtonTemplate" id="3"/>
+      <Button name="$parentItem4" inherits="MyBankFrameItemButtonTemplate" id="4"/>
+      <Button name="$parentItem5" inherits="MyBankFrameItemButtonTemplate" id="5"/>
+      <Button name="$parentItem6" inherits="MyBankFrameItemButtonTemplate" id="6"/>
+      <Button name="$parentItem7" inherits="MyBankFrameItemButtonTemplate" id="7"/>
+      <Button name="$parentItem8" inherits="MyBankFrameItemButtonTemplate" id="8"/>
+      <Button name="$parentItem9" inherits="MyBankFrameItemButtonTemplate" id="9"/>
+      <Button name="$parentItem10" inherits="MyBankFrameItemButtonTemplate" id="10"/>
+      <Button name="$parentItem11" inherits="MyBankFrameItemButtonTemplate" id="11"/>
+      <Button name="$parentItem12" inherits="MyBankFrameItemButtonTemplate" id="12"/>
+      <Button name="$parentItem13" inherits="MyBankFrameItemButtonTemplate" id="13"/>
+      <Button name="$parentItem14" inherits="MyBankFrameItemButtonTemplate" id="14"/>
+      <Button name="$parentItem15" inherits="MyBankFrameItemButtonTemplate" id="15"/>
+      <Button name="$parentItem16" inherits="MyBankFrameItemButtonTemplate" id="16"/>
+      <Button name="$parentItem17" inherits="MyBankFrameItemButtonTemplate" id="17"/>
+      <Button name="$parentItem18" inherits="MyBankFrameItemButtonTemplate" id="18"/>
+      <Button name="$parentItem19" inherits="MyBankFrameItemButtonTemplate" id="19"/>
+      <Button name="$parentItem20" inherits="MyBankFrameItemButtonTemplate" id="20"/>
+      <Button name="$parentItem21" inherits="MyBankFrameItemButtonTemplate" id="21"/>
+      <Button name="$parentItem22" inherits="MyBankFrameItemButtonTemplate" id="22"/>
+      <Button name="$parentItem23" inherits="MyBankFrameItemButtonTemplate" id="23"/>
+      <Button name="$parentItem24" inherits="MyBankFrameItemButtonTemplate" id="24"/>
+      <Button name="$parentItem25" inherits="MyBankFrameItemButtonTemplate" id="25"/>
+      <Button name="$parentItem26" inherits="MyBankFrameItemButtonTemplate" id="26"/>
+      <Button name="$parentItem27" inherits="MyBankFrameItemButtonTemplate" id="27"/>
+      <Button name="$parentItem28" inherits="MyBankFrameItemButtonTemplate" id="28"/>
+      <Button name="$parentItem29" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem30" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem31" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem32" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem33" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem34" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem35" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem36" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem37" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem38" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem39" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem40" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem41" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem42" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem43" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem44" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem45" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem46" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem47" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem48" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem49" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem50" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem51" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem52" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem53" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem54" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem55" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem56" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem57" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem58" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem59" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem60" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem61" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem62" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem63" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem64" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem65" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem66" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem67" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem68" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem69" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem70" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem71" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem72" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem73" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem74" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem75" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem76" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem77" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem78" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem79" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem80" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem81" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem82" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem83" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem84" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem85" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem86" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem87" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem88" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem89" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem90" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem91" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem92" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem93" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem94" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem95" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem96" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem97" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem98" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem99" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem100" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem101" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem102" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem103" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem104" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem105" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem106" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem107" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem108" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem109" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem110" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem111" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem112" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem113" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem114" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem115" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem116" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem117" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem118" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem119" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem120" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem121" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem122" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem123" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem124" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem125" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem126" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem127" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem128" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem129" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem130" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem131" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem132" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem133" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem134" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem135" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem136" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem137" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem138" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem139" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem140" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem141" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem142" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem143" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem144" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem145" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem146" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem147" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem148" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem149" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem150" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem151" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem152" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem153" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem154" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem155" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem156" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem157" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem158" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem159" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem160" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem161" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem162" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem163" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem164" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem165" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem166" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem167" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem168" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem169" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem170" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem171" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem172" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem173" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem174" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem175" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem176" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem177" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem178" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem179" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem180" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem181" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem182" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem183" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem184" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem185" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem186" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem187" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem188" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem189" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem190" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem191" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem192" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem193" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem194" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem195" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem196" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem197" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem198" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem199" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem200" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem201" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem202" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem203" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem204" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem205" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem206" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem207" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem208" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem209" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem210" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem211" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem212" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem213" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem214" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem215" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem216" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem217" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem218" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem219" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem220" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem221" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem222" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem223" inherits="MyBankFrameItemButtonTemplate"/>
+      <Button name="$parentItem224" inherits="MyBankFrameItemButtonTemplate"/>
+		<Frame name="MyBankBagButtonsBar">
+			<Size><AbsDimension x="232" y="37"/></Size>
+			<Anchors><Anchor point="TOP" relativePoint="TOP" relativeto="MyBankFrame"><Offset><AbsDimension x="0" y="-67" /></Offset></Anchor></Anchors>
+			<Frames>
+				<Button name="MyBankFrameBag5" inherits="MyBankBagButtonTemplate" id="5"/>
+				<Button name="MyBankFrameBag6" inherits="MyBankBagButtonTemplate" id="6"/>
+				<Button name="MyBankFrameBag7" inherits="MyBankBagButtonTemplate" id="7"/>
+				<Button name="MyBankFrameBag8" inherits="MyBankBagButtonTemplate" id="8"/>
+				<Button name="MyBankFrameBag9" inherits="MyBankBagButtonTemplate" id="9"/>
+				<Button name="MyBankFrameBag10" inherits="MyBankBagButtonTemplate" id="10"/>
+				<Button name="MyBankFrameBag11" inherits="MyBankBagButtonTemplate" id="11"/>
+			</Frames>
+		</Frame>
+		<Button name="$parentCloseButton" inherits="UIPanelCloseButton">
+			<Anchors>
+				<Anchor point="TOPRIGHT" relativeTo="$parent" relativePoint="TOPRIGHT">
+					<Offset>
+						<AbsDimension x="2" y="2"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					CloseMyBankFrame();
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parentFreezeButton" inherits="UIPanelCloseButton">
+			<NormalTexture name="MBFreezeNormalTexture" file="Interface\AddOns\MyInventory\Skin\LockButton-Unlocked-Up"/>
+			<PushedTexture name="MBFreezePushedTexture" file="Interface\AddOns\MyInventory\Skin\LockButton-Locked-Down"/>
+			<Anchors>
+				<Anchor point="RIGHT" relativeTo="$parentCloseButton" relativePoint="LEFT">
+					<Offset><Absdimension x="10" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					MyBank_Toggle_Option("Freeze");
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Button name="$parentHideBagsButton" inherits="UIPanelCloseButton">
+			<NormalTexture name="MBHideBagsNormalTexture" file="Interface\AddOns\MyInventory\Skin\MinimizeButton-Up"/>
+			<PushedTexture name="MBHideBagsPushedTexture" file="Interface\AddOns\MyInventory\Skin\MinimizeButton-Down"/>
+			<Anchors>
+				<Anchor point="RIGHT" relativeTo="$parentFreezeButton" relativePoint="LEFT">
+					<Offset><Absdimension x="15" y="0"/></Offset>
+				</Anchor>
+			</Anchors>
+			<Scripts>
+				<OnClick>
+					MyBank_Toggle_Option("BagView");
+				</OnClick>
+			</Scripts>
+		</Button>
+		<Frame name="MyBankDropDown" inherits="UIDropDownMenuTemplate" enableMouse="true">
+			<Anchors>
+				<Anchor point="TOP" relativeTo="MyBankFrame" relativePoint="TOP">
+					<Offset>
+						<AbsDimension x="30" y="-38"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="$parentLabel" inherits="GameFontNormalSmall" text="MYBANK_FRAME_SELECTPLAYER">
+							<Anchors>
+								<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+									<Offset>
+										<AbsDimension x="21" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			<Scripts>
+				<OnShow>
+					MyBank_UserDropDown_OnLoad();
+				</OnShow>
+				<OnEnter>
+					GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
+					GameTooltip:SetText(this.tooltip, nil, nil, nil, nil, 1);
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</Frame>
+		<CheckButton name="MyBank_AllRealms_Check" inherits="UICheckButtonTemplate">
+			<Anchors>
+				<Anchor point="TOPRIGHT" RelativeTo="MyBankDropDown" RelativePoint="TOPLEFT">
+					<Offset>
+						<AbsDimension x="15" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+			<HitRectInsets>
+				<AbsInset left="0" right="0" top="0" bottom="0"/>
+			</HitRectInsets>
+			<Scripts>
+				<OnShow>
+					MyBank_ShowAllRealms_Check_OnShow();
+				</OnShow>
+				<OnClick>
+					if ( this:GetChecked() ) then
+						PlaySound("igMainMenuOptionCheckBoxOff");
+					else
+						PlaySound("igMainMenuOptionCheckBoxOn");
+					end
+					MyBank_ShowAllRealms_Check_OnClick();
+				</OnClick>
+				<OnEnter>
+					if ( this.tooltipText ) then
+						GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+						GameTooltip:SetText(this.tooltipText, nil, nil, nil, nil, 1);
+					end
+				</OnEnter>
+				<OnLeave>
+					GameTooltip:Hide();
+				</OnLeave>
+			</Scripts>
+		</CheckButton>
+			<Frame name="MyBank_MoneyFrame" inherits="SmallMoneyFrameTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="-5" y="33"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad(self);
+						MoneyFrame_SetType(self,"STATIC");
+					--	this.small = 1;
+					--	this.moneyType = "PLAYER";
+					--	this.info = {
+					--		collapse = 1,
+					--		showSmallerCoins = "Backpack"};
+					</OnLoad>
+					<OnShow>
+						-- Do nothing override
+					</OnShow>
+				</Scripts>
+			</Frame>
+			<Frame name="MyBank_MoneyFrameTotal" inherits="SmallMoneyFrameTemplate" hidden="false">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="MyBankFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="20" y="33"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString name="MyBank_TotalMoneyText" inherits="GameFontHighlightSmall" text="MYBANK_FRAME_TOTAL" justifyH="LEFT">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parent" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="1" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						SmallMoneyFrame_OnLoad(self);
+						MoneyFrame_SetType(self,"STATIC");
+						--this.small = 1;
+						--this.moneyType = "PLAYER";
+						--this.info = {
+						--	collapse = 1,
+						--	showSmallerCoins = "Backpack"};
+					</OnLoad>
+					<OnShow>
+						--do nothing
+					</OnShow>
+				</Scripts>
+			</Frame>
+	</Frames>
+	<Scripts>
+      <OnEvent>
+        MyBankFrame_OnEvent(event);
+        MyBankTitle_Update();
+      </OnEvent>
+      <OnLoad>
+        MyBankFrame_OnLoad();
+        --this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+        MyBankTitle_Update();
+      </OnLoad>
+      <OnHide>
+        MyBankFrame_OnHide();
+      </OnHide>
+      <OnShow>
+        MyBankFrame_OnShow();
+      </OnShow>
+      <OnMouseDown>
+        if ( arg1 == "LeftButton" ) then
+          if ( MyBankFreeze == 0 ) then
+            this:StartMoving();
+          else
+            MyBank_Print(MYBANK_FROZEN_ERROR);
+          end
+        end
+      </OnMouseDown>
+      <OnMouseUp>
+        if ( arg1 == "LeftButton" ) then
+          this:StopMovingOrSizing();
+        end
+      </OnMouseUp>
+  </Scripts>
+  </Frame>
+
+	<GameTooltip name="MyBankHiddenTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true">
+	  <Scripts>
+      <Onload>
+      	this:SetOwner(UIParent,"ANCHOR_NONE"); 
+      </Onload>
+    </Scripts>
+  </GameTooltip>
+</Ui>

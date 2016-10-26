@@ -1,0 +1,232 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(中华人民共和国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\WoWCube.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
+    "#include ""l.CHS\\afxres.rc""      // 标准组件\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\WoWCube.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,1,3
+ PRODUCTVERSION 1,0,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080403a8"
+        BEGIN
+            VALUE "CompanyName", "Asura Software"
+            VALUE "FileDescription", "WoWCube Patcher"
+            VALUE "FileVersion", "1.0.0.0"
+            VALUE "InternalName", "WoWCube.exe"
+            VALUE "LegalCopyright", "Asura Software。保留所有权利。"
+            VALUE "OriginalFilename", "WoWCube.exe"
+            VALUE "ProductName", "WoWCube Patcher"
+            VALUE "ProductVersion", "1.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 936
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_WOWCUBE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 276
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 185
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WOWCUBE_DIALOG DIALOGEX 0, 0, 283, 189
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "WoWCube Patcher"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "",IDC_STATIC_GROUP,7,97,269,78,WS_GROUP
+    PUSHBUTTON      "更新插件(&D)",IDC_BUTTON_UPDATE,14,139,60,14,NOT WS_VISIBLE
+    PUSHBUTTON      "启动 魔兽世界(&R)",IDC_BUTTON_RUN,197,156,69,14
+    COMBOBOX        IDC_COMBO_SERVER,197,139,69,15,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "安装 WoWCube",IDC_BUTTON_INSTALL,15,138,59,14
+    PUSHBUTTON      "卸载 WoWCube",IDC_BUTTON_UNINSTALL,79,139,60,14,WS_DISABLED
+    PUSHBUTTON      "退出(&E)",IDC_BUTTON_EXIT,14,156,60,14
+    PUSHBUTTON      "管理插件(&M)",IDC_BUTTON_MANAGE,79,156,60,14,NOT WS_VISIBLE
+    PUSHBUTTON      "",IDC_BUTTON_CXML,217,7,59,14,NOT WS_VISIBLE
+    EDITTEXT        IDC_EDIT_WOWPATH,7,8,209,12,ES_AUTOHSCROLL | NOT WS_VISIBLE
+    LTEXT           "Static",IDC_STATIC_DELAY,157,138,37,17,SS_NOTIFY,WS_EX_TRANSPARENT | WS_EX_RIGHT
+    LTEXT           "Static",IDC_STATIC_NAME,141,160,41,8,SS_NOTIFY | SS_ENDELLIPSIS,WS_EX_TRANSPARENT | WS_EX_RIGHT
+    CONTROL         "Static",IDC_STATIC_TIP,"Static",SS_LEFTNOWORDWRAP | SS_PATHELLIPSIS | WS_GROUP,15,105,251,8,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_SERVER_ICON,"Static",SS_BLACKFRAME | SS_NOTIFY | SS_CENTERIMAGE | WS_GROUP,184,159,12,12,WS_EX_TRANSPARENT
+    CONTROL         "",IDC_PROGRESS_DL,"msctls_progress32",WS_BORDER,15,116,251,8
+    CONTROL         "",IDC_PROGRESS_TOTAL,"msctls_progress32",WS_BORDER,15,126,251,8
+    LTEXT           "Static",IDC_STATIC_COPYRIGHT,7,178,86,8,WS_DISABLED
+    CONTROL         "Static",IDC_STATIC_SHA1,"Static",SS_LEFTNOWORDWRAP | WS_DISABLED | WS_GROUP,97,178,179,9,WS_EX_TRANSPARENT | WS_EX_RIGHT
+    CONTROL         "",IDC_EXPLORER_WEB,
+                    "{8856F961-340A-11D0-A96B-00C04FD705A2}",0x0,7,7,269,91
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_WOWCUBE_DIALOG DLGINIT
+BEGIN
+    IDC_EXPLORER_WEB, 0x376, 160, 0
+0x0000, 0x0000, 0x004c, 0x0000, 0x30ae, 0x0000, 0x106f, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x004c, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0001, 
+0x0000, 0xd0e0, 0x0057, 0x3573, 0x11cf, 0x69ae, 0x0008, 0x2e2b, 0x6212, 
+0x0000, 0x0000, 0x0000, 0x0000, 0x004c, 0x0000, 0x1401, 0x0002, 0x0000, 
+0x0000, 0x00c0, 0x0000, 0x0000, 0x4600, 0x0080, 0x0000, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0001, 0x0000, 
+0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// GIF
+//
+
+IDR_GIFUP               GIF                     "res\\Uparrow.gif"
+IDR_GIFDOWN             GIF                     "res\\Downarrow.gif"
+IDR_GIFLOAD             GIF                     "res\\loading.gif"
+IDR_GIFFAIL             GIF                     "res\\failure.gif"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDP_SOCKETS_INIT_FAILED "Windows 套接字初始化失败。"
+END
+
+#endif    // 中文(中华人民共和国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\WoWCube.rc2"  // 非 Microsoft Visual C++ 编辑的资源
+#include "l.CHS\afxres.rc"      // 标准组件
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

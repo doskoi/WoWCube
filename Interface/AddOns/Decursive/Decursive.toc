@@ -1,0 +1,67 @@
+## Interface: 30000
+## X-Curse-Packaged-Version: 2.4_beta_2_STABLE
+## X-Curse-Project-Name: Decursive
+## X-Curse-Project-ID: decursive
+## X-Curse-Repository-ID: wow/decursive/mainline
+
+## Title: Decursive |cff7fff7f -Ace2-|r
+## Title-zhCN: 一键驱散
+## Title-zhTW: 一鍵驅散
+## Notes: Affliction display and cleaning for solo, group and raids with advanced filtering and priority system.
+## Notes-ruRU: Отображение и лечение недугов с расширенной фильтрацией и системой приоритетов.
+## Notes-zhCN: 提供显示和清除负面效果的功能，并提供相应的高级过滤和优先级系统。
+## Notes-zhTW: 提供驅魔輔助功能，包含進階的顯示及過濾功能
+## Notes-frFR: Affichage et guérison des afflictions avec un système évolué de filtrage et de priorité.
+
+## SavedVariablesPerCharacter: DcrCharDB
+## SavedVariables: DcrDB
+
+## Version: 2.4_beta_2_STABLE
+## Author: Archarodim
+
+## X-License: GNU GPL
+
+## OptionalDeps: Ace2, LibBabble-Class-3.0, DewdropLib, Waterfall-1.0, TabletLib, LibDataBroker-1.1, LibDBIcon-1.0, CallbackHandler-1.0
+## X-Embeds: Ace2, LibBabble-Class-3.0, DewdropLib, Waterfall-1.0, TabletLib, LibDataBroker-1.1, LibDBIcon-1.0, CallbackHandler-1.0
+
+## X-ReleaseDate: "2009-01-25T15:31:29Z"
+## X-Category: Combat
+## X-Website: http://www.2072productions.com/?to=decursive.php
+## X-Credits: Sylvin (Full french translation), Peter Sun (ZhTW translation), Fenlis (koKR translation)
+
+## X-RelSite-WoWI: 4937
+## X-RelSite-Curse: 3011
+## X-RelSite-UI.WoW: 2506
+## X-AceForum: 4195
+
+## X-eMail: archarodim@teaser.fr
+## X-Donate: PayPal:archarodim@teaser.fr
+## LoadOnDemand: 1
+## X-Revision: gLimMod
+
+
+
+Dcr_DIAG.lua
+DCR_init.lua
+Dcr_LDB.lua
+Dcr_utils.lua
+
+Localization\load.xml
+
+Dcr_opt.lua
+Dcr_Events.lua
+
+Dcr_Raid.lua
+
+Decursive.lua
+Decursive.xml
+
+Dcr_lists.lua
+Dcr_lists.xml
+
+Dcr_DebuffsFrame.lua
+Dcr_DebuffsFrame.xml
+
+Dcr_LiveList.lua
+Dcr_LiveList.xml
+

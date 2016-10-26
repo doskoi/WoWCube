@@ -1,0 +1,328 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+	<Script file="En_OptionsLocal.lua"/>
+	<Script file="En_Options.lua"/>
+<!-- OptionFrame -->
+	<CheckButton name="EUF_CheckButtonTemplate" virtual="true" inherits="OptionsCheckButtonTemplate">
+		<Size x="32" y="32"/>
+		<Scripts>
+			<OnClick>
+				EUF_OptionCheckButton_OnClick(this:GetName());
+			</OnClick>
+		</Scripts>
+	</CheckButton>
+	<Button name="EUF_ButtonTemplate" virtual="true" inherits="OptionsButtonTemplate">
+		<Size x="100" y="25"/>
+		<Scripts>
+			<OnClick>
+				EUF_OptionButton_OnClick(this:GetName());
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Frame name="EUF_OptionFrame" frameStrata="DIALOG" toplevel="true" enableMouse="true" movable="true" hidden="true" parent="UIParent" enableKeyboard="true" >
+		<Size x="550" y="445"/>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset x="0" y="50"/>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32"/>
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32"/>
+			</EdgeSize>
+		</Backdrop>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentHeader" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size x="480" y="64"/>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset x="0" y="12"/>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="EUF_TEXT_HEADER">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="$parentHeader">
+							<Offset x="0" y="-12"/>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentCopyrights" inherits="GameFontNormalSmall" text="Revision: Bryan">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT"  relativeTo="$parent" relativePoint="BOTTOMLEFT">
+							<Offset x="28" y="20"/>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="0.75" b="0" a="0.4"/>
+				</FontString>
+				<FontString name="$parentAddonName" inherits="GameFontNormalSmall">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT"  relativeTo="$parentCopyrights" relativePoint="BOTTOMLEFT">
+							<Offset x="0" y="12"/>
+						</Anchor>
+					</Anchors>
+					<Color r="1" g="0.75" b="0" a="0.4"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="EUF_OptionFrameSetupPanel" inherits="OptionsBoxTemplate">
+				<Size x="510" y="360"/>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset x="0" y="-32"/>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<CheckButton name="EUF_OptionFrameTOPPANEL" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameSetupPanel" relativePoint="TOPLEFT">
+								<Offset x="15" y="-15"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameNOEXTBORDER" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameTOPPANEL" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if this:GetChecked() then
+									EUF_OptionFramePLAYERHPMP:Enable();
+								else
+									EUF_OptionFramePLAYERHPMP:Disable();
+								end;
+								EUF_OptionCheckButton_OnClick(this:GetName());
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFramePLAYERHPMP" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameNOEXTBORDER" relativePoint="BOTTOMLEFT">
+								<Offset x="30" y="2"/>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								if EUF_OptionFrameNOEXTBORDER:GetChecked() then
+									EUF_OptionFramePLAYERHPMP:Enable();
+								else
+									EUF_OptionFramePLAYERHPMP:Disable();
+								end;
+							</OnLoad>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFramePETHPMP" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFramePLAYERHPMP" relativePoint="BOTTOMLEFT">
+								<Offset x="-30" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFramePLAYERXPRP" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFramePETHPMP" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnClick>
+								if this:GetChecked() then
+									EUF_OptionFramePLAYERXPPCT:Enable();
+									EUF_OptionFramePLAYERRPSHOW:Enable();
+								else
+									EUF_OptionFramePLAYERXPPCT:Disable();
+									EUF_OptionFramePLAYERRPSHOW:Disable();
+								end;
+								EUF_OptionCheckButton_OnClick(this:GetName());
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFramePLAYERXPPCT" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFramePLAYERXPRP" relativePoint="BOTTOMLEFT">
+								<Offset x="30" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFramePLAYERRPSHOW" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFramePLAYERXPPCT" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameTOTFRAME" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFramePLAYERRPSHOW" relativePoint="BOTTOMLEFT">
+								<Offset x="-30" y="2"/>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								if InCombatLockdown() then
+									this:Disable();
+								else
+									this:Enable();
+								end
+							</OnShow>
+							<OnClick>
+								if this:GetChecked() then
+									EUF_OptionFrameTOTHPPERCENT:Enable();
+								else
+									EUF_OptionFrameTOTHPPERCENT:Disable();
+								end
+								EUF_OptionCheckButton_OnClick(this:GetName());
+							</OnClick>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameTOTHPPERCENT" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameTOTFRAME" relativePoint="BOTTOMLEFT">
+								<Offset x="30" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameTOTOTFRAME" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameTOTHPPERCENT" relativePoint="BOTTOMLEFT">
+								<Offset x="-30" y="2"/>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnShow>
+								if InCombatLockdown() then
+									this:Disable();
+								else
+									this:Enable();
+								end
+							</OnShow>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameSHIFTMOVE" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameTOTOTFRAME" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFramePLAYERELITE" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameTOPPANEL" relativePoint="TOPLEFT">
+								<Offset x="245" y="0"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFramePLAYERTIME" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFramePLAYERELITE" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameOTWARNING" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFramePLAYERTIME" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFramePARTYHPMP" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameOTWARNING" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFramePARTYLEVEL" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFramePARTYHPMP" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFramePARTYCLASS" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFramePARTYLEVEL" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameTARGETHPPCT" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFramePARTYCLASS" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameTARGETTYPE" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameTARGETHPPCT" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameTARGETCLASS" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameTARGETTYPE" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameTARGETICON" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameTARGETCLASS" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="EUF_OptionFrameTARGETSHIELD" inherits="EUF_CheckButtonTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="EUF_OptionFrameTARGETICON" relativePoint="BOTTOMLEFT">
+								<Offset x="0" y="2"/>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+				</Frames>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.1, 0.1, 0.1, 0.7);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Button name="$parentCONFIRM" inherits="EUF_ButtonTemplate" text="EUF_TEXT_CONFIRM">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativeTo="$parent" relativePoint="BOTTOMRIGHT">
+						<Offset x="-26" y="20"/>
+					</Anchor>
+				</Anchors>
+			</Button>
+			<Button name="$parentDEFAULT" inherits="EUF_ButtonTemplate" text="EUF_TEXT_DEFAULT">
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="$parentCONFIRM" relativePoint="TOPLEFT">
+						<Offset x="-10" y="0"/>
+					</Anchor>
+				</Anchors>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnShow>
+				if not EUF_Version then
+					EUF_Version = "";
+				end;
+				EUF_OptionFrameAddonName:SetText("Enhanced Unit Frames " .. EUF_Version);
+				EUF_OptionFrame_OnShow();
+			</OnShow>
+		</Scripts>
+	</Frame>
+</Ui>

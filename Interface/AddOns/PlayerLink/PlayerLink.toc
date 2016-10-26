@@ -1,0 +1,12 @@
+## Interface: 30000
+## Title: FriendsMenuXP
+## Notes: Improve the function of player link. 
+## Title-zhCN: 玩家链接
+## Notes-zhCN: 玩家超链接、查询列表、好友列表、工会列表中点击玩家名字增加更多选择。按住alt点玩家链接可以邀请，按住ctrl点玩家链接选定目标。
+## Title-zhTW: 玩家鏈接
+## Notes-zhTW: 玩家超鏈接、查詢列表、好友列表、工會列表中點擊玩家名字增加更多選擇。按住alt點玩家鏈接可以邀請，按住ctrl點玩家鏈接選定目標。
+## Author: Warbaby-二区暗影之月<凌翼>
+## LoadOnDemand: 1
+## Dependencies: gLimMod
+## X-Revision: gLimMod
+PlayerLink.xml

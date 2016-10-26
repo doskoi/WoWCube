@@ -1,0 +1,382 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..\FrameXML\UI.xsd">
+	<Script file="localization.lua"/>
+	<Script file="BaseQuest.lua"/>
+	<Script file="BaseNpc.lua"/>
+	<Script file="localization\BaseArea.enUS.lua"/>
+	<Script file="localization\BaseArea.zhTW.lua"/>
+	<Script file="localization\BaseArea.zhCN.lua"/>
+	<Script file="localization\BaseNpcName.enUS.lua"/>
+	<Script file="localization\BaseNpcName.zhTW.lua"/>
+	<Script file="localization\BaseNpcName.zhCN.lua"/>
+	<Script file="QuestLibrary.lua"/>
+	<Frame name="QuestLibrary" parent="UIParent" hidden="true">
+	<Scripts>
+		<OnLoad>
+			QuestLibrary_OnLoad();
+		</OnLoad>
+		<OnEvent>
+			QuestLibrary_OnEvent();
+		</OnEvent>
+	</Scripts>
+	</Frame>
+	<Button name="QuestLibraryQuestObjectButtonTemplate" hidden="true" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\TutorialFrame\TutorialFrame-QuestionMark">
+					<Size>
+						<AbsDimension x="24" y="24"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT">
+							<Offset>
+								<AbsDimension x="-20" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture>
+			<Size>
+				<AbsDimension x="275" y="12"/>
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER" relativePoint="CENTER"/>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture alphaMode="ADD" file="Interface\QuestFrame\UI-QuestTitleHighlight">
+			<Size>
+				<AbsDimension x="275" y="12"/>
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER" relativePoint="CENTER"/>
+			</Anchors>
+		</PushedTexture>
+		<HighlightTexture alphaMode="ADD" file="Interface\QuestFrame\UI-QuestTitleHighlight">
+			<Size>
+				<AbsDimension x="275" y="12"/>
+			</Size>
+			<Anchors>
+				<Anchor point="CENTER" relativePoint="CENTER"/>
+			</Anchors>
+		</HighlightTexture>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+		</Scripts>
+	</Button>
+	<Button name="QuestLibraryQHObjectButtonTemplate" inherits="QuestLibraryQuestObjectButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				QuestLibrary_QHObjectButton_OnClick(arg1,this:GetID());
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="QuestLibraryQLObjectButtonTemplate" inherits="QuestLibraryQuestObjectButtonTemplate" virtual="true">
+		<Scripts>
+			<OnClick>
+				QuestLibrary_QLObjectButton_OnClick(arg1,this:GetID());
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="QuestLibraryQHObjectButton1" inherits="QuestLibraryQHObjectButtonTemplate" parent="QuestHistoryDetailScrollChildFrame" id="1">
+	</Button>
+	<Button name="QuestLibraryQHObjectButton2" inherits="QuestLibraryQHObjectButtonTemplate" parent="QuestHistoryDetailScrollChildFrame" id="2">
+	</Button>
+	<Button name="QuestLibraryQHObjectButton3" inherits="QuestLibraryQHObjectButtonTemplate" parent="QuestHistoryDetailScrollChildFrame" id="3">
+	</Button>
+	<Button name="QuestLibraryQHObjectButton4" inherits="QuestLibraryQHObjectButtonTemplate" parent="QuestHistoryDetailScrollChildFrame" id="4">
+	</Button>
+	<Button name="QuestLibraryQHObjectButton5" inherits="QuestLibraryQHObjectButtonTemplate" parent="QuestHistoryDetailScrollChildFrame" id="5">
+	</Button>
+	<Button name="QuestLibraryQHObjectButton6" inherits="QuestLibraryQHObjectButtonTemplate" parent="QuestHistoryDetailScrollChildFrame" id="6">
+	</Button>
+	<Button name="QuestLibraryQHObjectButton7" inherits="QuestLibraryQHObjectButtonTemplate" parent="QuestHistoryDetailScrollChildFrame" id="7">
+	</Button>
+	<Button name="QuestLibraryQHObjectButton8" inherits="QuestLibraryQHObjectButtonTemplate" parent="QuestHistoryDetailScrollChildFrame" id="8">
+	</Button>
+	<Button name="QuestLibraryQHObjectButton9" inherits="QuestLibraryQHObjectButtonTemplate" parent="QuestHistoryDetailScrollChildFrame" id="9">
+	</Button>
+	<Button name="QuestLibraryQHObjectButton10" inherits="QuestLibraryQHObjectButtonTemplate" parent="QuestHistoryDetailScrollChildFrame" id="10">
+	</Button>
+	<Button name="QuestLibraryQLObjectButton1" inherits="QuestLibraryQLObjectButtonTemplate" parent="QuestLogDetailScrollChildFrame" id="1">
+	</Button>
+	<Button name="QuestLibraryQLObjectButton2" inherits="QuestLibraryQLObjectButtonTemplate" parent="QuestLogDetailScrollChildFrame" id="2">
+	</Button>
+	<Button name="QuestLibraryQLObjectButton3" inherits="QuestLibraryQLObjectButtonTemplate" parent="QuestLogDetailScrollChildFrame" id="3">
+	</Button>
+	<Button name="QuestLibraryQLObjectButton4" inherits="QuestLibraryQLObjectButtonTemplate" parent="QuestLogDetailScrollChildFrame" id="4">
+	</Button>
+	<Button name="QuestLibraryQLObjectButton5" inherits="QuestLibraryQLObjectButtonTemplate" parent="QuestLogDetailScrollChildFrame" id="5">
+	</Button>
+	<Button name="QuestLibraryQLObjectButton6" inherits="QuestLibraryQLObjectButtonTemplate" parent="QuestLogDetailScrollChildFrame" id="6">
+	</Button>
+	<Button name="QuestLibraryQLObjectButton7" inherits="QuestLibraryQLObjectButtonTemplate" parent="QuestLogDetailScrollChildFrame" id="7">
+	</Button>
+	<Button name="QuestLibraryQLObjectButton8" inherits="QuestLibraryQLObjectButtonTemplate" parent="QuestLogDetailScrollChildFrame" id="8">
+	</Button>
+	<Button name="QuestLibraryQLObjectButton9" inherits="QuestLibraryQLObjectButtonTemplate" parent="QuestLogDetailScrollChildFrame" id="9">
+	</Button>
+	<Button name="QuestLibraryQLObjectButton10" inherits="QuestLibraryQLObjectButtonTemplate" parent="QuestLogDetailScrollChildFrame" id="10">
+	</Button>
+	<Button name="QuestLibraryWorldMapDeleteButton" inherits="UIPanelButtonTemplate" parent="WorldMapFrame" hidden="true" text="QUESTLIBRARY_TEXT_DELETEBUTTON">
+		<Size>
+			<AbsDimension x="110" y="22"/>
+		</Size>
+		<Anchors>
+			<Anchor point="LEFT" relativePoint="RIGHT" relativeTo="WorldMapZoomOutButton">
+					<Offset><AbsDimension x="0" y="0"/></Offset>
+			</Anchor>
+			<!--
+			<Anchor point="TOPLEFT" relativePoint="TOP" relativeTo="WorldMapPositioningGuide">
+				<Offset>
+					<AbsDimension x="-460" y="-40"/>
+				</Offset>
+			</Anchor>
+			-->
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				QuestLibrary_WorldMapDeleteButton_OnClick();
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="QuestLibraryQHDetailAcceptedLocationButton" parent="QuestHistoryDetailListScrollChildFrame" hidden="true">
+		<Size>
+			<AbsDimension x="196" y="12"/>
+		</Size>
+		<NormalText name="QuestLibraryQHDetailAcceptedLocationText" inherits="GameFontHighlightSmall" justifyH="LEFT">
+			<Size>
+				<AbsDimension x="196" y="12"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="QuestHistoryDetailAcceptedLocationTitle" relativePoint="TOPRIGHT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalText>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="QuestHistoryDetailFrame">
+				<Offset>
+					<AbsDimension x="127" y="-97"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				if (this.tooltip) then
+					GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+					GameTooltip:SetText(this.tooltip, 1, 1, 1);
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				QuestLibrary_QH_SendToMapNotes(arg1, "a");
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="QuestLibraryQHDetailCompletedLocationButton" parent="QuestHistoryDetailListScrollChildFrame" hidden="true">
+		<Size>
+			<AbsDimension x="196" y="12"/>
+		</Size>
+		<NormalText name="QuestLibraryQHDetailCompletedLocationText" inherits="GameFontHighlightSmall" justifyH="LEFT">
+			<Size>
+				<AbsDimension x="190" y="12"/>
+			</Size>
+			<Anchors>
+				<Anchor point="TOPLEFT" relativeTo="QuestHistoryDetailCompletedLocationTitle" relativePoint="TOPRIGHT">
+					<Offset>
+						<AbsDimension x="0" y="0"/>
+					</Offset>
+				</Anchor>
+			</Anchors>
+		</NormalText>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="QuestHistoryDetailFrame">
+				<Offset>
+					<AbsDimension x="133" y="-109"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
+			</OnLoad>
+			<OnEnter>
+				if (this.tooltip) then
+					GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+					GameTooltip:SetText(this.tooltip, 1, 1, 1);
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+			<OnClick>
+				QuestLibrary_QH_SendToMapNotes(arg1, "c");
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Frame name="QuestLibraryNPCTreeTemplate" inherits="EarthTreeTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				this.titleCount = 16;
+				this.collapseAllButton = nil;
+				this.highlight = nil;
+				this.tooltip = "GameTooltip";
+				this.tooltipPlacement = "cursor";
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Frame name="QuestLibraryQHNPCFrame" parent="QuestHistoryDetailFrame" hidden="true">
+		<Size>
+			<AbsDimension x="300" y="261"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="QuestHistoryDetailListScrollFrame" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-7"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="QuestLibraryQHNPCBackButton" inherits="UIPanelButtonTemplate" text="QUESTLIBRARY_TEXT_BACKBUTTON">
+				<Size>
+					<AbsDimension x="250" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="QuestHistoryDetailFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="17" y="54"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						QuestLibraryQHNPCFrame:Hide();
+						QuestHistoryDetailScrollFrame:Show();
+						QuestHistoryDetailPreviousButton:Show();
+						QuestHistoryDetailFrameNextButton:Show();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Frame name="QuestLibraryQHNPCTree" inherits="QuestLibraryNPCTreeTemplate">
+				<Size>
+					<AbsDimension x="300" y="261"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Frame name="QuestLibraryQLNPCFrame" parent="QuestLogFrame" hidden="true">
+		<Size>
+			<AbsDimension x="300" y="261"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="QuestLogListScrollFrame" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-7"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="QuestLibraryQLNPCBackButton" inherits="UIPanelButtonTemplate" text="QUESTLIBRARY_TEXT_BACKBUTTON">
+				<Size>
+					<AbsDimension x="250" y="21"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeTo="QuestLogFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="17" y="54"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						QuestLibraryQLNPCFrame:Hide();
+						QuestLogDetailScrollFrame:Show();
+						QuestLogFrameAbandonButton:Show();
+						QuestFramePushQuestButton:Show();
+						QuestLibrary_ShowUberQuest_Details();
+						QuestLibrary_ShowEQL3_Details();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Frame name="QuestLibraryQLNPCTree" inherits="QuestLibraryNPCTreeTemplate">
+				<Size>
+					<AbsDimension x="300" y="261"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Button name="QuestLibraryQLACQueryButton" inherits="UIPanelButtonTemplate" parent="QuestLogDetailScrollFrame" hidden="true" text="QUESTLIBRARY_TEXT_QUERYBUTTON">
+		<Size>
+			<AbsDimension x="77" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPRIGHT" relativeTo="QuestLogDetailScrollFrame" relativePoint="TOPRIGHT">
+				<Offset>
+					<AbsDimension x="-2" y="-3"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				QuestLibrary_QLACQueryButton_OnClick(arg1);
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Button name="QuestLibraryQLQuestQueryButton" inherits="UIPanelButtonTemplate" parent="QuestLogFrame" text="QUESTLIBRARY_TEXT_SEARCHBUTTON">
+		<Size>
+			<AbsDimension x="77" y="21"/>
+		</Size>
+		<Anchors>
+			<Anchor point="LEFT" relativeTo="QuestLogTitleText" relativePoint="LEFT">
+				<Offset>
+					<AbsDimension x="30" y="-2"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:SetFrameLevel(this:GetFrameLevel() + 4);
+				if (QuestHistoryFrame == nil) then
+					this:Hide();
+				end
+			</OnLoad>
+			<OnClick>
+				QuestHistory_Toggle();
+				if (QuestHistoryFrame:IsVisible()) then
+					QuestHistoryFrameSearchButton_OnClick();
+				end
+			</OnClick>
+			<OnEnter>
+				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+				GameTooltip:SetText(QUESTLIBRARY_TEXT_SEARCHBUTTON_TOOLTIP, 1, 1, 1);
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</Button>
+</Ui>

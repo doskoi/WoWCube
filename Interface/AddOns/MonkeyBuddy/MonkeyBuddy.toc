@@ -1,0 +1,13 @@
+## Interface: 30000
+## Title: MonkeyBuddy v2.9
+## Notes: Helps you configure your MonkeyMods. (http://www.toctastic.net/)
+## Title-zhCN: 任务追踪 设置面板
+## Title-zhTW: 任務追蹤 設置面板
+## Author: Trentin (trentin@toctastic.net)
+## Dependencies: MonkeyLibrary, gLimMod
+## OptionalDeps: MonkeyQuest, MonkeySpeed, MonkeyClock, myAddOns
+## LoadWith: MonkeyLibrary
+## LoadOnDemand: 1 
+## SavedVariables: MonkeyBuddyConfig
+## X-Revision: gLimMod
+MonkeyBuddy.xml

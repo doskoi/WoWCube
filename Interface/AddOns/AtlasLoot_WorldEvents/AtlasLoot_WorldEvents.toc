@@ -1,0 +1,24 @@
+﻿## Interface: 30000
+## Title: AtlasLoot_WorldEvents
+## Title-deDE: AtlasLoot |cFF0099FF[Welt-Loot]|r
+## Title-zhCN: 副本掉落 |cFF0099FF户外首领|r
+## Title-zhTW: 副本掉落 |cFF0099FF野外首領|r
+## Notes: AtlasLoot loot tables from outdoor raid bosses and world events
+## Notes-deDE: AtlasLoot Loot-Tabellen für Outdoorbosse und Welt-Events
+## Notes-zhCN: AtlasLoot Enhanced 的户外首领掉落物品信息
+## Notes-zhTW: AtlasLoot 野外首領掉落物品資料庫
+## Author: Daviesh
+## Version: v5.03.02
+## X-eMail: oma_daviesh@hotmail.com
+## X-Category: Map
+## X-License: GPL v2
+## X-Website: http://www.atlasloot.net
+## Dependencies: AtlasLoot
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: v5.03.02
+## X-Curse-Project-Name: Atlasloot Enhanced
+## X-Curse-Project-ID: atlasloot-enhanced
+## X-Curse-Repository-ID: wow/atlasloot-enhanced/mainline
+
+worldevents.lua
+localization.lua

@@ -1,0 +1,25 @@
+﻿## Interface: 30000
+## Title: |cFF00FF00gLimMod|r
+## Notes: Create by Pigbaby, Designer by Bryan
+## Title-zhCN: |cFFFFFF00月光宝盒|r
+## Notes-zhCN: |cFFFFCC33gLimMod|r                                   PigBaby创建,黑眼圈设计
+## Title-zhTW: |cFFFFFF00月光寶盒|r
+## Notes-zhTW: |cFFFFCC33gLimMod|r                                   PigBaby創建,黑眼圈設計
+## Dependencies: gLimAPI
+## SavedVariables: CubeConfig, VarConfig
+## SavedVariablesPerCharacter: AddOnConfig
+## Version: 1.3.0
+## Author: Bryan
+## Author-zhCN: 黑眼圈
+
+## X-eMail: doskoi.panda@gmail.com
+## X-Build: $Revision: 80
+## X-Date: 2009-2-13
+## X-Website: http://wowcube.cn
+## X-Feedback: http://blog.doskoi.cn/wow.html
+## X-Revision: gLimMod
+
+CommonTemplate.xml
+gLimMod.xml
+fstBook.xml
+secBook.xml

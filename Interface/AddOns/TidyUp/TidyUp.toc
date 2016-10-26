@@ -1,0 +1,8 @@
+## Interface: 30000
+## Title: TidyUp
+## Title-zhCN: 背包整理
+## Title-zhTW: 背包整理
+## Dependencies: gLimMod
+## X-Revision: gLimMod
+TidyUp.lua
+localization.lua

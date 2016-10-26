@@ -1,0 +1,299 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+C:\Projects\WoW\Bin\Interface\FrameXML\UI.xsd">
+    <Script file="En_ToT.lua"/>
+
+	<Frame name="TOT_Main">
+		<Scripts>
+        	<OnLoad>
+				EUF_ToT_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				EUF_ToT_OnEvent(event);
+			</OnEvent>
+			<OnUpdate>
+				EUF_OT_Warning();
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<Button name="ToT_Frame"  frameStrata="LOW" inherits="SecureUnitButtonTemplate" parent="UIParent" movable="true">
+		<Size>
+			<AbsDimension x="96" y="48"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativeTo="TargetFrame" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="50" y="24"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<HitRectInsets>
+			<AbsInset left="3" right="33" top="3" bottom="3"/>
+		</HitRectInsets>
+		<Attributes>
+			<Attribute name="type" type="string" value="target" />
+			<Attribute name="unit" type="string" value="targettarget" />
+		</Attributes>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentPortrait">
+					<Size x="27" y="27"/>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="6" y="-5"/>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame setAllPoints="true">
+				<Frames>
+					<Frame setAllPoints="true">
+						<Layers>
+							<Layer level="ARTWORK">
+								<Texture name="$parentTexture" file="Interface\TargetingFrame\UI-SmallTargetingFrame">
+									<Size x="96" y="48"/>
+									<Anchors>
+										<Anchor point="TOPLEFT">
+											<Offset x="0" y="-2"/>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentName" inherits="GameFontNormalSmall" justifyH="LEFT">
+									<Size x="100" y="10"/>
+									<Anchors>
+										<Anchor point="BOTTOMLEFT">
+											<Offset x="33" y="33"/>
+										</Anchor>
+									</Anchors>
+								</FontString>
+								<FontString name="$parentPercent" inherits="GameTooltipTextSmall">
+									<Anchors>
+										<Anchor point="BOTTOMLEFT">
+											<Offset>
+												<AbsDimension x="10" y="2"/>
+											</Offset>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+				</Frames>
+			</Frame>
+			<StatusBar name="$parentHealthBar" inherits="TextStatusBar">
+				<Size x="52" y="5"/>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="34" y="-18"/>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEvent>
+						UnitFrameHealthBar_Update(this, arg1);
+					</OnEvent>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+			</StatusBar>
+			<StatusBar name="$parentManaBar" inherits="TextStatusBar">
+				<Size x="52" y="5"/>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="34" y="-24"/>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEvent>
+						UnitFrameManaBar_Update(this, arg1);
+					</OnEvent>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+			</StatusBar>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				local pretot = "ToT_Frame";
+				UnitFrame_Initialize(self, "targettarget", getglobal(pretot.."Name"),getglobal(pretot.."Portrait"),
+					   getglobal(pretot.."HealthBar"), getglobal(pretot.."HealthBarText"),
+					   getglobal(pretot.."ManaBar"), getglobal(pretot.."ManaBarText"))
+				SetTextStatusBarTextZeroText(getglobal(pretot.."HealthBar"), TEXT(DEAD))
+			</OnLoad>
+			<OnEvent>
+				UnitFrame_OnEvent(event);
+			</OnEvent>
+			<OnEnter>
+				local newbieTip = SHOW_NEWBIE_TIPS
+				SHOW_NEWBIE_TIPS = "0"
+				UnitFrame_OnEnter(this)
+				SHOW_NEWBIE_TIPS = newbieTip
+			</OnEnter>
+			<OnLeave>
+				UnitFrame_OnLeave();
+			</OnLeave>
+			<OnShow>
+				UnitFrame_Update(self)
+			</OnShow>
+			<OnHide>
+				TOTOT_Name = nil
+			</OnHide>
+			<OnUpdate>
+				if not UnitExists("targettarget") then return end
+				if TOT_Name ~= UnitName("targettarget") then
+					TOT_Name = UnitName("targettarget")
+					SetPortraitTexture(this.portrait, this.unit)
+					this.name:SetText(TOT_Name)
+				end
+				UnitFrameHealthBar_Update(this.healthbar, this.unit)
+				UnitFrameManaBar_Update(this.manabar, this.unit)
+				EUF_ToTHPPercent_Display()
+			</OnUpdate>
+			<OnMouseDown>
+				if(arg1 == "LeftButton") and (IsShiftKeyDown()) and (EUF_CurrentOptions["SHIFTMOVE"] == 1) then
+					this:StartMoving();
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				if(arg1 == "LeftButton") then
+					this:StopMovingOrSizing();
+				end
+			</OnMouseUp>
+		</Scripts>
+	</Button>
+
+	<Button name="ToToT_Frame"  frameStrata="LOW" inherits="SecureUnitButtonTemplate" parent="UIParent" movable="true">
+		<Size>
+			<AbsDimension x="80" y="40"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativeTo="ToT_Frame" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="26" y="20"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<HitRectInsets>
+			<AbsInset left="3" right="33" top="3" bottom="3"/>
+		</HitRectInsets>
+		<Attributes>
+			<Attribute name="type" type="string" value="target" />
+			<Attribute name="unit" type="string" value="targettargettarget" />
+		</Attributes>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentPortrait">
+					<Size x="22" y="22"/>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset x="4" y="-3"/>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame setAllPoints="true">
+				<Frames>
+					<Frame setAllPoints="true">
+						<Layers>
+							<Layer level="ARTWORK">
+								<Texture name="$parentTexture" file="Interface\TargetingFrame\UI-SmallTargetingFrame">
+									<Size x="80" y="40"/>
+									<Anchors>
+										<Anchor point="TOPLEFT">
+											<Offset x="0" y="-2"/>
+										</Anchor>
+									</Anchors>
+								</Texture>
+								<FontString name="$parentName" inherits="GameFontNormalSmall" justifyH="LEFT">
+									<Size x="100" y="10"/>
+									<Anchors>
+										<Anchor point="BOTTOMLEFT">
+											<Offset x="12" y="2"/>
+										</Anchor>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+					</Frame>
+				</Frames>
+			</Frame>
+			<StatusBar name="$parentHealthBar" inherits="TextStatusBar">
+				<Size x="42" y="5"/>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="28" y="-15"/>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEvent>
+						UnitFrameHealthBar_Update(this, arg1);
+					</OnEvent>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+			</StatusBar>
+			<StatusBar name="$parentManaBar" inherits="TextStatusBar">
+				<Size x="42" y="5"/>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset x="28" y="-21"/>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEvent>
+						UnitFrameManaBar_Update(this, arg1);
+					</OnEvent>
+				</Scripts>
+				<BarTexture file="Interface\TargetingFrame\UI-StatusBar"/>
+			</StatusBar>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				local pretotot = "ToToT_Frame";
+				UnitFrame_Initialize(self, "targettargettarget", getglobal(pretotot.."Name"),getglobal(pretotot.."Portrait"),
+					   getglobal(pretotot.."HealthBar"), getglobal(pretotot.."HealthBarText"),
+					   getglobal(pretotot.."ManaBar"), getglobal(pretotot.."ManaBarText"))
+				SetTextStatusBarTextZeroText(getglobal(pretotot.."HealthBar"), TEXT(DEAD))
+			</OnLoad>
+			<OnEvent>
+				UnitFrame_OnEvent(event);
+			</OnEvent>
+			<OnEnter>
+				local newbieTip = SHOW_NEWBIE_TIPS
+				SHOW_NEWBIE_TIPS = "0"
+				UnitFrame_OnEnter(this)
+				SHOW_NEWBIE_TIPS = newbieTip
+			</OnEnter>
+			<OnLeave>
+				UnitFrame_OnLeave();
+			</OnLeave>
+			<OnShow>
+				UnitFrame_Update(self)
+			</OnShow>
+			<OnHide>
+				TOTOT_Name = nil
+			</OnHide>
+			<OnUpdate>
+				if not UnitExists("targettargettarget") then return end
+				if TOTOT_Name ~= UnitName("targettargettarget") then
+					TOTOT_Name = UnitName("targettargettarget")
+					SetPortraitTexture(this.portrait, this.unit)
+					this.name:SetText(TOTOT_Name)
+				end
+				UnitFrameHealthBar_Update(this.healthbar, this.unit)
+				UnitFrameManaBar_Update(this.manabar, this.unit)
+			</OnUpdate>
+			<OnMouseDown>
+				if(arg1 == "LeftButton") and (IsShiftKeyDown() and (EUF_CurrentOptions["SHIFTMOVE"] == 1) ) then
+					this:StartMoving();
+				end
+			</OnMouseDown>
+			<OnMouseUp>
+				if(arg1 == "LeftButton") then
+					this:StopMovingOrSizing();
+				end
+			</OnMouseUp>
+		</Scripts>
+	</Button>
+
+</Ui>

@@ -1,0 +1,37 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+  <Script file="Screenshot.lua"/>
+  <Script file="localization.lua"/>
+  <Frame name="ScreenshotSignFrame" toplevel="true" parent="WorldFrame" hidden="true" alpha="0.4">  <!-- enableMouse="true" -->
+  	<Size>
+		<AbsDimension x="128" y="64"/>
+	</Size>
+	<Anchors>
+		<Anchor point="BOTTOMRIGHT">
+			<Offset>
+				<AbsDimension x="-10" y="44"/>
+			</Offset>
+		</Anchor>
+	</Anchors>
+	<Layers>
+		<Layer level="BACKGROUND">
+			<Texture file="Interface\AddOns\Screenshot\Cube">
+				<Size>
+					<AbsDimension x="128" y="64"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+				</Anchors>
+			</Texture>
+		</Layer>
+	</Layers>
+    <Scripts>
+      <OnLoad>
+        Screenshot_OnLoad();
+      </OnLoad>
+      <OnEvent>
+        Screenshot_OnEvent(event);
+      </OnEvent>
+    </Scripts>
+  </Frame>
+</Ui>

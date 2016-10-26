@@ -1,0 +1,11 @@
+## Interface: 30000
+## Title: Auto Repair
+## Notes: when dialog with NPC,then Auto Repair your equip.
+## Title-zhCN: 自动修理
+## Notes-zhCN: 与NPC对话时,自动修理身上的装备,并记录每次修理的费用.
+## Title-zhTW: 自動修理
+## Notes-zhTW: 與NPC對話時,自動修理身上的裝備,並記錄每次修理的費用.
+## SavedVariables: RepairConfig
+## Dependencies: gLimMod
+## X-Revision: gLimMod
+AutoRepair.xml

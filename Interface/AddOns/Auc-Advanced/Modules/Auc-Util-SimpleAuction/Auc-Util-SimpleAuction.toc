@@ -1,0 +1,9 @@
+## Title: Auc:Util:SimpleAuction
+## Interface: 30000
+## Dependancies: Auc-Advanced
+##
+## Version: 5.2.4013 (DingoII)
+## Revision: $Id$
+## URL: http://auctioneeraddon.com/
+##
+Embed.xml

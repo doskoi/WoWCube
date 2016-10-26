@@ -1,0 +1,16 @@
+﻿## Interface: 30000
+## Title: QuestLibrary
+## Notes:Query quest infomation in game
+## Title-zhCN: 任务查询
+## Notes-zhCN:内存占用高                              提供任务相关信息的查询
+## Title-zhTW: 任務查詢
+## Notes-zhTW:內存佔用高                              提供任務相關信息的查詢
+## RequiredDeps: 
+## OptionalDeps: MapNotes, MetaMap, QuestHistory
+
+## Dependencies: gLimMod
+## LoadOnDemand: 1
+## SavedVariables: QuestLibraryOptions
+## X-Revision: gLimMod
+EarthTreeTemplate.xml
+QuestLibrary.xml

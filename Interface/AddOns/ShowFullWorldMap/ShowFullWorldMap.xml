@@ -1,0 +1,74 @@
+<!--
+
+ShowFullWorldMap.xml
+
+-->
+
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/FrameXML/UI.xsd">
+
+	<Script file="localisation.en.lua"/>
+	<Script file="localisation.cn.lua"/>
+	<Script file="localisation.tw.lua"/>
+	<Script file="ShowFullWorldMap.lua"/>
+
+	<Frame name="MozzFullWorldMapFrame" hidden="false" toplevel="true" frameStrata="LOW" enableMouse="false" parent="UIParent">
+		<Anchor point="TOPLEFT">
+			<Offset>
+				<AbsDimension x="0" y="0"/>
+			</Offset>
+		</Anchor>
+		<Size>
+			<AbsDimension x="1" y="1"/>
+		</Size>
+		<Scripts>
+			<OnLoad>
+				ShowFullWorldMapFrame_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				ShowFullWorldMapFrame_OnEvent();
+			</OnEvent>
+			<OnUpdate>
+				ShowFullWorldMapFrame_OnUpdate(self, arg1);
+			</OnUpdate>
+		</Scripts>
+	</Frame>
+
+	<CheckButton name="ShowWorldMapShowAllCheckButton" hidden="false" inherits="OptionsCheckButtonTemplate" parent="WorldMapFrame">
+		<HitRectInsets>
+			<AbsInset left="0" right="-125" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Size>
+			<AbsDimension x="24" y="25"/>
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativeTo="WorldMapZoomOutButton" relativePoint="TOPLEFT">
+				<Offset>
+					<AbsDimension x="0" y="11"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnClick>
+				if ( this:GetChecked() ) then
+					ShowFullWorldMap.Enabled = true;
+				else
+					ShowFullWorldMap.Enabled = false;
+				end
+				WorldMapFrame_Update();
+			</OnClick>
+			<OnShow>
+				this:SetChecked( ShowFullWorldMap.Enabled );
+			</OnShow>
+		</Scripts>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="ShowWorldMapShowAllLabel" inherits="GameFontNormalSmall" justifyH="LEFT" text="BINDING_NAME_MOZZ_WM_CHECKBOX">
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="ShowWorldMapShowAllCheckButton" relativePoint="RIGHT">
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</CheckButton>
+</Ui>

@@ -1,0 +1,5 @@
+<Bindings>
+	<Binding name="SHOW_WM_CHECKBOX" header="SFWM">
+        	SFWM_KeyBind_Toggle();
+	</Binding>
+</Bindings>

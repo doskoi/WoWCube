@@ -1,0 +1,12 @@
+## Interface: 30000
+## Title: MonkeyLibrary v2.9
+## Notes: Common files and functions for MonkeyMods. (http://www.toctastic.net/)
+## Title-zhCN: 任务追踪 函数库
+## Notes-zhCN: 任务追踪插件公用函数库
+## Title-zhTW: 任務追蹤 函數庫
+## Notes-zhTW: 任務追蹤插件公用函數庫
+## Author: Trentin (trentin@toctastic.net)
+## LoadOnDemand: 1 
+## Dependencies: gLimMod
+## X-Revision: gLimMod
+MonkeyLibrary.xml

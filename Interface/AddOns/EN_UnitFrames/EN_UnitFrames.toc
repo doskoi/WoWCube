@@ -1,0 +1,17 @@
+## Interface: 30000
+## Title: Enigma Unit Frames
+## Notes: Enhanced Unit Frames including HP/MP values, class, race, level tag, and more ...
+## Title-zhCN: 界面增强
+## Notes-zhCN: 增强显示头像，显示目标的目标的目标，并显示破甲值等信息，小队头像显示队员职业等级 并显示生命值及法力值。整合MobHealth显示目标血量。by捣蛋精灵|cFFFF9000内存占用：中|r955K
+## Title-zhTW: 界面增強
+## Notes-zhTW: 增強顯示頭像，顯示目標的目標的目標，並顯示破甲值等信息，小隊頭像顯示隊員職業等級 並顯示生命值及法力值。整合MobHealth顯示目標血量。
+## Author: Enigma @ http://luodan.com
+## RequiredDeps: gLimMod
+## SavedVariables: EUF_Options, MobHealthDB
+## X-Revision: gLimMod
+En_UnitFrames.xml
+En_Options.xml
+En_HPMPXP.xml
+En_Buff.lua
+En_Info.xml
+En_ToT.xml

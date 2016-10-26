@@ -1,0 +1,24 @@
+## Interface: 30000
+## Title: AtlasLoot_Crafting
+## Title-deDE: AtlasLoot |cFF0099FF[BC-Instanzen]|r
+## Title-zhCN: 副本掉落 |cFF0099FF交易技能物品|r
+## Title-zhTW: 副本掉落 |cFF0099FF商業技能物品|r
+## Notes: AtlasLoot loot tables of Crafting Items
+## Notes-deDE: AtlasLoot loot tables of Crafting Items
+## Notes-zhCN: AtlasLoot 交易技能制造出的物品表
+## Notes-zhTW: AtlasLoot 商業技能物品資料庫
+## Author: Daviesh
+## Version: v5.03.02
+## X-eMail: oma_daviesh@hotmail.com
+## X-Category: Map
+## X-License: GPL v2
+## X-Website: http://www.atlasloot.net
+## Dependencies: AtlasLoot
+## LoadOnDemand: 1
+## X-Curse-Packaged-Version: v5.03.02
+## X-Curse-Project-Name: Atlasloot Enhanced
+## X-Curse-Project-ID: atlasloot-enhanced
+## X-Curse-Repository-ID: wow/atlasloot-enhanced/mainline
+
+crafting.lua
+localization.lua

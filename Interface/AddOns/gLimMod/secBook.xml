@@ -1,0 +1,549 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<!-- 黑眼圈 Create by 05.03.20 Cube -->
+	<Script file="secBook.lua"/>
+
+	<Frame name="secBookTextSubFrameTemplate" movable="false" virtual="true">
+		<Anchors>
+			<Anchor point="CENTER" relativePoint="CENTER">
+				<Offset>
+					<AbsDimension x="-60" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Size>
+			<AbsDimension x="215" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentBackground" setAllPoints="true">
+					<Color r="0" g="1" b="0" a="0.0"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="gLimNormalFont" text="">
+					<Anchors>
+						<Anchor point="LEFT">
+							<Offset>
+								<AbsDimension x="4" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<CheckButton name="secBookCheckButtonTemplate" hidden="false" virtual="true">
+		<Anchors>
+			<Anchor point="LEFT">
+				<Offset>
+					<AbsDimension x="0" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="$parentCheckbuttonBackground" setAllPoints="true">
+					<Color r="0" g="0" b="1" a="0.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		<NormalTexture file="Interface\Buttons\UI-CheckBox-Up"/>
+		<PushedTexture file="Interface\Buttons\UI-CheckBox-Down"/>
+		<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check"/>
+		<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled"/>
+	</CheckButton>
+
+	<Button name="secBookButtonTemplate" inherits="GameMenuButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="128" y="20" />
+		</Size>
+		<Anchors>
+			<Anchor point="BOTTOMLEFT" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="13" y="7" />
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				this:SetText("EMPTY");
+			</OnLoad>
+			<OnClick>
+				secBook_Button(this:GetParent():GetID());
+			</OnClick>
+		</Scripts>
+	</Button>
+	<Slider name="secBookSliderTemplate" orientation="HORIZONTAL" virtual="true">
+		<Size>
+			<AbsDimension x="128" y="17"/>
+		</Size>
+		<Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="8"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="8"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="3" right="3" top="6" bottom="6"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentSliderBackground" setAllPoints="true">
+					<Color r="0" g="1" b="1" a="0.0"/>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="gLimSmallFont">
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="TOP">
+							<Offset>
+								<AbsDimension x="0" y="-4"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="$parentValueText" inherits="gLimSmallFont">
+					<Color r=".4" g=".6" b="1" a="1"/>
+					<Anchors>
+						<Anchor point="BOTTOM">
+							<Offset>
+								<AbsDimension x="0" y="-10"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="gLimHighlightSmallFont" text="LOW">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT">
+							<Offset>
+								<AbsDimension x="2" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString inherits="gLimHighlightSmallFont" text="HIGH">
+					<Anchors>
+						<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT">
+							<Offset>
+								<AbsDimension x="-2" y="3"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<ThumbTexture file="Interface\Buttons\UI-SliderBar-Button-Horizontal">
+			<Size>
+				<AbsDimension x="32" y="32"/>
+			</Size>
+		</ThumbTexture>
+	</Slider>
+	<Frame name="secBookSeparatorTemplate" hidden="false" virtual="true">
+		<Size>
+			<AbsDimension x="240" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString name="$parentText" inherits="gLimNormalFont" text="">
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="2"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<Color r="1.0" g="0.3" b="0.2" a="1.0"/>
+				</FontString>
+			</Layer>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentSeparatorBackground" file="Interface\Tooltips\UI-StatusBar-Border"/>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="secBookDividerTemplate" hidden="false" virtual="true">
+		<Size>
+			<AbsDimension x="432" y="19"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentLeft" file="Interface\HelpFrame\HelpFrameDivider">
+					<Size>
+						<AbsDimension x="134" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT"/>
+					</Anchors>
+					<TexCoords left="0" right="1.0" top="0" bottom="0.3125"/>
+				</Texture>
+				<Texture name="$parentMiddle" file="Interface\HelpFrame\HelpFrameDivider">
+					<Size>
+						<AbsDimension x="186" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentLeft" relativePoint="RIGHT">
+							<Offset>
+								<AbsDimension x="0" y="1"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+					<TexCoords left="0" right="1.0" top="0.3125" bottom="0.625"/>
+				</Texture>
+				<Texture name="$parentRight" file="Interface\HelpFrame\HelpFrameDivider">
+					<Size>
+						<AbsDimension x="101" y="20"/>
+					</Size>
+					<Anchors>
+						<Anchor point="LEFT" relativeTo="$parentMiddle" relativePoint="RIGHT"/>
+					</Anchors>
+					<TexCoords left="0" right="0.25390625" top="0.625" bottom="0.9375"/>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="secBookConfigurationTemplate" hidden="false" virtual="true">
+		<Size>
+			<AbsDimension x="200" y="32"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentFrame" inherits="secBookTextSubFrameTemplate"/>
+			<Frame name="$parentSection" movable="false" inherits="secBookSeparatorTemplate">
+				<Anchors>
+					<Anchor point="TOP">
+						<Offset>
+							<AbsDimension x="-12" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						gLimModMaster_SetInfo(this:GetParent():GetID());
+					</OnEnter>
+				</Scripts>
+			</Frame>
+			<CheckButton name="$parentCheckbox" inherits="secBookCheckButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="LEFT">
+						<Offset>
+							<AbsDimension x="-100" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>		
+						if ( this:GetChecked() ) then
+							gLimModMaster_CheckBox(this:GetParent():GetID(), 1);
+						else
+							gLimModMaster_CheckBox(this:GetParent():GetID(), 0);
+						end
+					</OnClick>
+					<OnEnter>
+						gLimModMaster_SetInfo(this:GetParent():GetID());
+					</OnEnter>
+					<OnLeave>
+						gLimModMaster_ClearInfo();
+					</OnLeave>
+				</Scripts>
+			</CheckButton>
+			<Button name="$parentButton" inherits="GameMenuButtonTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="40" y="-4"/>
+						</Offset>
+					</Anchor>					
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOption");
+						gLimModMaster_Button(this:GetParent():GetID());
+					</OnClick>
+					<OnEnter>
+						gLimModMaster_SetInfo(this:GetParent():GetID());
+					</OnEnter>
+					<OnLeave>
+						gLimModMaster_ClearInfo();
+					</OnLeave>
+				</Scripts>
+			</Button>
+			<Slider name="$parentSlider" inherits="secBookSliderTemplate">
+				<Anchors>
+					<Anchor point="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="35" y="-6"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnValueChanged>
+						gLimModMaster_Slider(this:GetParent():GetID(), arg1);
+					</OnValueChanged>
+					<OnEnter>
+						gLimModMaster_SetInfo(this:GetParent():GetID());
+					</OnEnter>
+					<OnLeave>
+						gLimModMaster_ClearInfo();
+					</OnLeave>
+				</Scripts>
+			</Slider>
+		</Frames>
+	</Frame>
+	<Frame name="gLimConfigSubFrame" toplevel="true" frameStrata="DIALOG" movable="true" enableMouse="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="432" y="496"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOP" relativeTo="UIParent" relativePoint="BOTTOM">
+				<Offset>
+					<AbsDimension x="20" y="100"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+		</Backdrop>
+		<Frames>
+			<Frame name="gLimMod1" inherits="secBookConfigurationTemplate" id="1">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="TOP">
+						<Offset>
+							<AbsDimension x="20" y="-48"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="gLimMod2" inherits="secBookConfigurationTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="gLimMod1" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="gLimMod3" inherits="secBookConfigurationTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="gLimMod2" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="gLimMod4" inherits="secBookConfigurationTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="gLimMod3" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+						<Size>
+							<AbsDimension x="128" y="17"/>
+						</Size>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="gLimMod5" inherits="secBookConfigurationTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="gLimMod4" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="gLimMod6" inherits="secBookConfigurationTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="gLimMod5" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="gLimMod7" inherits="secBookConfigurationTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="gLimMod6" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="gLimMod8" inherits="secBookConfigurationTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="gLimMod7" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="gLimMod9" inherits="secBookConfigurationTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="gLimMod8" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="gLimMod10" inherits="secBookConfigurationTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOP" relativeTo="gLimMod9" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="-2"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Frame name="secBookMainDivider" inherits="secBookDividerTemplate">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="6" y="-372"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<ScrollingMessageFrame name="secBookTextbox" ignoreArrows="true" maxLines="4" historyLines="0" fade="true" displayDuration="3" fadeDuration="3" letters="256" hidden="false">
+				<Size>
+					<AbsDimension x="450" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="52"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="secBookTextboxBackground" setAllPoints="true">
+							<Color r="0" g="0" b="0" a="0.0"/>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString name="secBookTextboxHeader" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="TOP">
+									<Offset>
+										<AbsDimension x="13" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<FontString inherits="GameFontNormal"/>
+			</ScrollingMessageFrame>
+			<Frame name="secBookSubDivider" inherits="secBookDividerTemplate">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="6" y="32"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+			</Frame>
+			<Button name="secBookOkay" inherits="GameMenuButtonTemplate" text="GLIM_CONFIGPAGE_OKAY">
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="14"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						gLimModMaster_OnOkayClick();
+						HideUIPanel(gLimConfigSubFrame);
+					</OnClick>
+				</Scripts>
+			</Button>
+			<Button name="secBookCancel" inherits="GameMenuButtonTemplate" text="GLIM_CONFIGPAGE_CANCLE">
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativePoint="BOTTOM">
+						<Offset>
+							<AbsDimension x="0" y="14"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						gLimModMaster_Reset();
+						PlaySound("gsTitleOptionExit");
+				</OnClick>
+				</Scripts>
+			</Button>
+			<ScrollFrame name="secBookScrollFrame" inherits="FauxScrollFrameTemplate">
+				<Size>
+					<AbsDimension x="296" y="360"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativeTo="gLimConfigSubFrame">
+						<Offset>
+							<AbsDimension x="-40" y="-16"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parentScrollBarTop" file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="288"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPRIGHT">
+									<Offset>
+										<AbsDimension x="30" y="5"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0" right="0.484375" top="0" bottom="1.0"/>
+						</Texture>
+						<Texture file="Interface\PaperDollInfoFrame\UI-Character-ScrollBar">
+							<Size>
+								<AbsDimension x="31" y="128"/>
+							</Size>
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT">
+									<Offset>
+										<AbsDimension x="30" y="-2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<TexCoords left="0.515625" right="1.0" top="0" bottom="0.4140625"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnVerticalScroll>
+							FauxScrollFrame_OnVerticalScroll(self, offset, 32, gLimModMaster_DrawData);
+					</OnVerticalScroll>
+				</Scripts>
+			</ScrollFrame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				secBook_OnLoad();
+			</OnLoad>
+			<OnDragStart>
+				secBook_OnDragStart();
+			</OnDragStart>
+			<OnDragStop>
+				secBook_OnDragStop();
+			</OnDragStop>
+			<OnMouseUp>
+				secBook_OnDragStop();
+			</OnMouseUp>
+		</Scripts>
+	</Frame>
+</Ui>

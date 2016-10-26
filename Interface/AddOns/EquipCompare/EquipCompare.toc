@@ -1,0 +1,21 @@
+## Interface: 30000
+## Title: Equip Compare
+## Notes: Compare the equip then you tooltip show another
+## Title-zhCN: 装备对比
+## Notes-zhCN: 将你所接触到的装备与你身上的装备进行比较.
+## Title-zhTW: 裝備對比
+## Notes-zhTW: 將你所接觸到的裝備與你身上的裝備進行比較.
+## Author: Legorol
+## Version: 2.13
+## SavedVariables: EquipCompare_Enabled, EquipCompare_ControlMode, EquipCompare_UseCV, EquipCompare_AltMode, EquipCompare_Shiftup
+## OptionalDeps: Khaos, Cosmos, Satellite, Sky, CharactersViewer, LootLink
+## X-Website: http://www.wowinterface.com/downloads/info4392-EquipCompare.html
+## LoadOnDemand: 0
+## Dependencies: gLimMod
+## X-Revision: gLimMod
+localization.lua
+localization.cn.lua
+localization.tw.lua
+localization.post.lua
+EquipCompare.lua
+EquipCompare.xml

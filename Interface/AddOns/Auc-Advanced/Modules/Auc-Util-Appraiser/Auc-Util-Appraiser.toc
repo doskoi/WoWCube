@@ -1,0 +1,9 @@
+## Title: Auc:Util:Appraiser
+## Interface: 30000
+## Dependencies: Auc-Advanced
+##
+## Version: 5.2.4013 (DingoII)
+## Revision: $Id: Auc-Util-Appraiser.toc 3866 2008-11-23 18:32:44Z Shirik $
+## URL: http://auctioneeraddon.com/
+##
+Embed.xml

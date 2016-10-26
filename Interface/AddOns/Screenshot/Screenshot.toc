@@ -1,0 +1,11 @@
+## Interface: 30000
+## Title: Screenshot
+## Notes: usage Shift+Print Screen for get game picture without UI
+## Title-zhCN: 快速截图
+## Notes-zhCN: 使用Shift+Print Screen键可以截下没有界面的游戏图片.
+## Title-zhTW: 快速截圖
+## Notes-zhTW: 使用Shift+Print Screen鍵可以截下沒有界面的遊戲圖片.
+## Dependencies: gLimMod
+## SavedVariables: ScreenShot
+## X-Revision: gLimMod
+Screenshot.xml

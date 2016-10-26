@@ -1,0 +1,613 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+<!-- 黑眼圈 Create by 05.03.18 Cube -->
+	<Script file="fstBook.lua"/>
+
+	<!-- gLimConfig_FrameBoxTemplate -->
+	<Frame name="gLimConfig_FrameBoxTemplate" virtual="true">
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString name="$parentTitle" inherits="gLimNormalFont">
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" relativePoint="TOPLEFT">
+							<Offset>
+								<AbsDimension x="10" y="-22"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+			<EdgeSize>
+				<AbsValue val="16"/>
+			</EdgeSize>
+			<TileSize>
+				<AbsValue val="16"/>
+			</TileSize>
+			<BackgroundInsets>
+				<AbsInset left="5" right="5" top="5" bottom="5"/>
+			</BackgroundInsets>
+		</Backdrop>
+	</Frame>
+
+	<CheckButton name="gLimConfigButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="37" y="37"/>
+		</Size>
+
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentIconTexture" setAllPoints="true" hidden="true"/>
+			</Layer>
+		</Layers>
+		
+		<Scripts>
+			<OnClick>
+				gLimButton_OnClick();
+			</OnClick>
+			<OnEnter>
+				gLimButton_OnEnter();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+
+	<CheckButton name="gLimConfigLineTabTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture file="Interface\SpellBook\SpellBook-SkillLineTab">
+					<Size>
+						<AbsDimension x="64" y="64"/>
+					</Size>
+					<Anchors>
+						<Anchor point="TOPLEFT">
+							<Offset>
+								<AbsDimension x="-3" y="11"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick>
+				gLimBookButtonLineTab_OnClick();
+			</OnClick>
+			<OnEnter>				
+				gLimBookRightButtonToolTip();
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<NormalTexture/>
+		<HighlightTexture file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+		<CheckedTexture file="Interface\Buttons\CheckButtonHilight" alphaMode="ADD"/>
+	</CheckButton>
+
+	<Frame name="gLimConfigFrame" toplevel="true" frameStrata="MEDIUM" movable="false" enableMouse="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="288" y="416"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="UIParent" relativePoint="BOTTOMLEFT">
+				<Offset>
+					<AbsDimension x="0" y="-104"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background"
+			edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11"/>
+			</BackgroundInsets>
+		</Backdrop>
+
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="gLimConfigTitleBox" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="256" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString name="gLimConfigTitleText" inherits="gLimHighlightFont"> 
+					<Anchors>
+						<Anchor point="CENTER">
+							<Offset>
+								<AbsDimension x="0" y="200"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+				<FontString name="gLimConfigFramePageNum" inherits="gLimNormalFont"> 
+					<Anchors>
+						<Anchor point="CENTER" relativeTo="gLimConfigFrame" relativePoint="BOTTOMLEFT">>
+							<Offset>
+								<AbsDimension x="145" y="30"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+
+		<Frames>
+			<Frame name="gLimConfig_Area" inherits="gLimConfig_FrameBoxTemplate" >
+				<Size>
+					<AbsDimension x="250" y="30"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="gLimConfigFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="145" y="60"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetText(GetAddOnMetadata("gLimMod", "X-Website").." "..GLIM_OPTIONS_TITLE);
+					</OnLoad>
+					<OnEnter>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.5, 0.5, 0.5);
+						getglobal(this:GetName().."Title"):SetFontObject(gLimCareFont);
+						getglobal(this:GetName().."Title"):SetText("Version:"..GetAddOnMetadata("gLimMod", "Version").." Released:"..GetAddOnMetadata("gLimMod", "X-Date"));
+					</OnEnter>
+					<OnLeave>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+						getglobal(this:GetName().."Title"):SetFontObject(gLimNormalFont);
+						getglobal(this:GetName().."Title"):SetText(GetAddOnMetadata("gLimMod", "X-Website").." "..GLIM_OPTIONS_TITLE);
+					</OnLeave>
+				</Scripts>
+			</Frame>
+			<Button name="gLimConfigFramePrevPageButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="gLimConfigFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="30" y="30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString inherits="gLimNormalFont" justifyH="LEFT" text="GLIM_CONFIGPAGE_PREV">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigFramePrevPageButton" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						gLimConfigFrame_PrevPageButton_OnClick();
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-PrevPage-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+			</Button>
+			<Button name="gLimConfigFrameNextPageButton">
+				<Size>
+					<AbsDimension x="32" y="32"/>
+				</Size>
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="gLimConfigFrame" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="255" y="30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<FontString inherits="gLimNormalFont" justifyH="RIGHT" text="GLIM_CONFIGPAGE_NEXT">
+							<Anchors>
+								<Anchor point="RIGHT" relativeTo="gLimConfigFrameNextPageButton" relativePoint="LEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						gLimConfigFrame_NextPageButton_OnClick();
+					</OnClick>
+				</Scripts>
+				<NormalTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Up"/>
+				<PushedTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Down"/>
+				<DisabledTexture file="Interface\Buttons\UI-SpellbookIcon-NextPage-Disabled"/>
+				<HighlightTexture file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD"/>
+			</Button>
+			<Button name="gLimConfigCloseButton" inherits="UIPanelCloseButton">
+				<Anchors>
+					<Anchor point="CENTER" relativeTo="gLimConfigFrame" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-20" y="-20"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						Toggle_gLimConfigFrame();
+					</OnClick>
+				</Scripts>
+			</Button>
+			<CheckButton name="gLimConfigButton1" inherits="gLimConfigButtonTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="20" y="-35"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName1" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton1" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton2" inherits="gLimConfigButtonTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton1">
+						<Offset>
+							<AbsDimension x="130" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName2" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton2" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton3" inherits="gLimConfigButtonTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName3" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton3" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton4" inherits="gLimConfigButtonTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton3">
+						<Offset>
+							<AbsDimension x="130" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName4" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton4" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton5" inherits="gLimConfigButtonTemplate" id="5">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton3" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName5" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton5" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton6" inherits="gLimConfigButtonTemplate" id="6">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton5">
+						<Offset>
+							<AbsDimension x="130" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName6" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton6" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton7" inherits="gLimConfigButtonTemplate" id="7">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton5" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName7" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton7" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton8" inherits="gLimConfigButtonTemplate" id="8">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton7">
+						<Offset>
+							<AbsDimension x="130" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName8" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton8" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton9" inherits="gLimConfigButtonTemplate" id="9">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton7" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName9" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton9" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton10" inherits="gLimConfigButtonTemplate" id="10">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton9">
+						<Offset>
+							<AbsDimension x="130" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName10" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton10" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton11" inherits="gLimConfigButtonTemplate" id="11">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton9" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName11" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton11" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton12" inherits="gLimConfigButtonTemplate" id="12">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton11">
+						<Offset>
+							<AbsDimension x="130" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName12" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton12" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton13" inherits="gLimConfigButtonTemplate" id="13">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton11" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-7"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName13" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton13" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigButton14" inherits="gLimConfigButtonTemplate" id="14">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigButton13">
+						<Offset>
+							<AbsDimension x="130" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString name="gLimConfigName14" inherits="gLimConfigFont" >
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="gLimConfigButton14" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</CheckButton>
+
+			<CheckButton name="gLimConfigLineTab99" inherits="gLimConfigLineTabTemplate" id="99">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT">
+						<Offset>
+							<AbsDimension x="-4" y="-65"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture file="Interface\Icons\Trade_Engraving">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigLineTab1" inherits="gLimConfigLineTabTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigLineTab99" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-17"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture file="Interface\Icons\Trade_Engineering">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigLineTab2" inherits="gLimConfigLineTabTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigLineTab1" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-17"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture file="Interface\Icons\Spell_Shadow_DeathCoil">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigLineTab3" inherits="gLimConfigLineTabTemplate" id="3">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigLineTab2" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-17"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture file="Interface\Icons\INV_Misc_Coin_02">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+			<CheckButton name="gLimConfigLineTab4" inherits="gLimConfigLineTabTemplate" id="4">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="gLimConfigLineTab3" relativePoint="BOTTOMLEFT">
+						<Offset>
+							<AbsDimension x="0" y="-17"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture file="Interface\Icons\INV_Misc_Food_59">
+							<Size>
+								<AbsDimension x="32" y="32"/>
+							</Size>
+						</Texture>
+					</Layer>
+				</Layers>
+			</CheckButton>
+		</Frames>
+		
+		<Scripts>
+			<OnLoad>
+				gLim_OnLoad();
+			</OnLoad>
+			<OnShow>
+				gLimButton_OnShow();
+			</OnShow>
+			<OnHide>
+				gLimButton_OnHide();
+			</OnHide>
+			<OnEvent>
+				gLimModMaster_OnEvent();
+			</OnEvent>
+		</Scripts>		
+	</Frame>
+</Ui>

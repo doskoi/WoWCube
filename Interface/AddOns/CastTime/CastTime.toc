@@ -1,0 +1,11 @@
+## Interface: 30000
+## Title: Cast Time
+## Title-zhCN: 施法时间
+## Title-zhTW: 施法時間
+## Author: exi
+## Notes: Adds a timer (in seconds) to the casting bar.
+## Dependencies: gLimMod
+## OptionalDeps: Khaos
+## SavedVariables: CastTime
+## X-Revision: gLimMod
+CastTime.xml

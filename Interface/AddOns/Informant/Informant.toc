@@ -1,0 +1,35 @@
+## Title: Informant
+## Title-zhCN: 信息增强
+## Title-zhTW: 信息增強
+## Notes: Displays detailed item information in tooltips, and can produce item reports by binding an information window to a keypress [5.2.4013] This AddOn is licensed under the GNU GPL, see GPL.txt for details.
+## Notes-zhCN: 在物品信息条上显示详细信息
+## Notes-zhTW: 在物品信息條上顯示詳細信息
+## Interface: 30000
+## LoadOnDemand: 1
+## Dependencies: Stubby
+## OptionalDeps: !nLog, Babylonian, DebugLib, Configator, SlideBar, LibExtraTip, TipHelper
+## SavedVariables: InformantConfig, InformantLocalUpdates
+##
+## Version: 5.2.4013 (DingoII)
+## Revision: $Id: Informant.toc 3959 2009-01-08 22:51:00Z Hirsute $
+## URL: http://auctioneeraddon.com/dl/Informant
+## X-Revision: gLimMod
+Support\Load.xml
+InfManifest.lua
+
+Libs\Load.xml
+
+InfStrings.lua
+InfLocale.lua
+
+InfMain.lua
+
+Data\InfQuests.lua
+Data\InfVendors.lua
+
+InfCommand.lua
+InfSettings.lua
+InfTooltip.lua
+InfData.lua
+
+Informant.xml

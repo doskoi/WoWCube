@@ -1,0 +1,47 @@
+## Interface: 30000
+## Title: Titan Panel
+## Notes: Adds a control panel/info bar on the top and bottom of the screen. Allows users to control time/volume/panel scale/transparency, also displays important information such as money/bag/latency/FPS/Location/XP in real time. 
+## Title-zhCN: 泰坦面板
+## Notes-zhCN: 在屏幕顶端或底部增加的信息条. 允许玩家控制:时间/音量/面板缩放/透明度, 同时也实时显示很多重要信息, 例如金钱/包裹/延迟/FPS/区域/经验等
+## Title-zhTW: 泰坦面板
+## Notes-zhTW: 在屏幕頂端或底部增加的信息條. 允許玩家控制:時間/音量/面板縮放/透明度, 同時也實時顯示很多重要信息, 例如金錢/包裹/延遲/FPS/區域/經驗等
+## Author: TitanMod@gmail.com / Adsertor
+## SavedVariables: TitanSettings, ServerTimeOffsets, TITAN_HONORPLUS, TITAN_HONORPLUS_CHATINFO
+## OptionalDeps: myAddOns, ImprovedErrorFrame, TipBuddy, Opium
+
+## Dependencies: gLimMod
+## Version: 4.1.5.30000 (Revision 120)
+## OptionalDeps: Ace3, TabletLib, LibSharedMedia-3.0, LibQTip-1.0
+## X-Embeds: Ace3, TabletLib, LibSharedMedia-3.0, LibQTip-1.0
+## X-Category: Interface Enhancements
+## X-Website: http://www.titanpanel.org
+## X-Email: contact@titanpanel.org
+
+
+
+LibDataBroker-1.1.lua
+Localization.xml
+TitanUtils.lua
+TitanVariables.lua
+TitanMenu.lua
+TitanPanelTemplate.xml
+TitanMovable.lua
+TitanTooltip.lua
+TitanPanel.xml
+TitanAutoHide.xml
+TitanAuxAutoHide.xml
+LDBToTitan.lua
+
+BonusScanner\BonusScanner.xml
+TitanAmmo\TitanAmmo.xml
+TitanBag\TitanBag.xml
+TitanClock\TitanClock.xml
+TitanCoords\TitanCoords.xml
+TitanGoldTracker\TitanGoldTracker.xml
+TitanItemBonuses\TitanItemBonuses.xml
+TitanLootType\TitanLootType.xml
+TitanPerformance\TitanPerformance.xml
+TitanRegen\TitanRegen.xml
+TitanRepair\TitanRepair.xml
+TitanVolume\TitanVolume.xml
+TitanXP\TitanXP.xml

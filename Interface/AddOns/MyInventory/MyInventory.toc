@@ -1,0 +1,16 @@
+## Interface: 30000
+## Author: Darklin, ievil
+## Title: MyInventory
+## Notes: Standalone inventory single bag.
+## Title-zhCN: 整合背包
+## Notes-zhCN: 在一个视窗内显示背包或银行中的物品
+## Title-zhTW: 整合背包
+## Notes-zhCN: 在一個視窗內顯示背包或銀行中的物品
+## SavedVariables: MyInventoryProfile, MyBankProfile
+## LoadOnDemand: 1
+## Dependencies: gLimMod
+## X-Revision: gLimMod
+MyInventory.xml
+MyInventory_Options.xml
+MyBank.xml
+MyBank_Config.xml

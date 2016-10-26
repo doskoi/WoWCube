@@ -1,0 +1,361 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="RedOut.lua"/>
+	<Script file="localization.lua"/>
+	<CheckButton name="RedOutCheckTemplate" inherits="UICheckButtonTemplate" virtual="true">
+		<HitRectInsets>
+			<AbsInset left="0" right="-100" top="0" bottom="0"/>
+		</HitRectInsets>
+		<Scripts>
+			<OnClick>
+				if ( this:GetChecked() ) then
+					PlaySound("igMainMenuOptionCheckBoxOff");
+				else
+					PlaySound("igMainMenuOptionCheckBoxOn");
+				end
+				RedOut_OptionsCheckButtonOnClick();
+			</OnClick>
+			<OnEnter>
+				if ( this.tooltipText ) then
+					GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+					GameTooltip:SetBackdropColor(0.0, 0.0, 0.0);
+					GameTooltip:SetText(this.tooltipText, 1.0, 1.0, 1.0);
+				end
+			</OnEnter>
+			<OnLeave>
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+
+	<Frame name="RedOutColorOptionTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="160" y="22"/>
+		</Size>
+		<Frames>
+			<Button name="$parent_ColorSwatch">
+				<Size>
+					<AbsDimension x="16" y="16"/>
+				</Size>
+				<Anchors>
+					<Anchor point="LEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture name="$parent_SwatchBg">
+							<Size>
+								<AbsDimension x="14" y="14"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="0" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+							<Color r="1.0" g="1.0" b="1.0"/>
+						</Texture>
+						<FontString name="$parentText" inherits="GameFontNormal">
+							<Anchors>
+								<Anchor point="LEFT" relativeTo="$parent" relativePoint="RIGHT">
+									<Offset>
+										<AbsDimension x="5" y="0"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnClick>
+						CloseMenus();
+						UIDropDownMenuButton_OpenColorPicker(this:GetParent());
+					</OnClick>
+					<OnEnter>
+						getglobal(this:GetName().."_SwatchBg"):SetVertexColor(NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b);
+						if ( this.tooltipText ) then
+							GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+							GameTooltip:SetBackdropColor(0.0, 0.0, 0.0);
+							GameTooltip:SetText(this.tooltipText, 1.0, 1.0, 1.0);
+						end
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+						getglobal(this:GetName().."_SwatchBg"):SetVertexColor(HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b);
+					</OnLeave>
+				</Scripts>
+				<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\ChatFrameColorSwatch"/>
+			</Button>
+		</Frames>
+	</Frame>
+	
+	<Frame name="RedOutOptions" toplevel="true" frameStrata="MEDIUM" movable="true" enableMouse="true" hidden="true" parent="UIParent">
+		<Size>
+			<AbsDimension x="234" y="430" />
+		</Size>
+		<Anchors>
+			<Anchor point="CENTER">
+				<Offset>
+					<AbsDimension x="0" y="20"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border"
+			tile="true">
+			<BackgroundInsets>
+				<AbsInset left="11" right="12" top="12" bottom="11" />	
+				<Size>
+					<AbsDimension x="128" y="17" />
+				</Size>
+			</BackgroundInsets>
+			<TileSize>
+				<AbsValue val="32" />
+			</TileSize>
+			<EdgeSize>
+				<AbsValue val="32" />
+			</EdgeSize>
+		</Backdrop>
+		
+		<Layers>
+			<Layer level="ARTWORK">
+				<Texture name="RedOutFrameTitle" file="Interface\DialogFrame\UI-DialogBox-Header">
+					<Size>
+						<AbsDimension x="276" y="64" />
+					</Size>
+					<Anchors>
+						<Anchor point="TOP">
+							<Offset>
+								<AbsDimension x="0" y="12" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+				<FontString inherits="GameFontNormal" text="RedOut Options">
+					<Anchors>
+						<Anchor point="TOP" relativeTo="RedOutOptions">
+							<Offset>
+								<AbsDimension x="0" y="-3" />
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		
+
+		<Frames>
+			<Frame name="RedOutOptionsGeneral" inherits="OptionsBoxTemplate">
+				<Size>
+					<AbsDimension x="206" y="140"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="14" y="-40"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<CheckButton name="RedOutOptions_EnableCheck" inherits="RedOutCheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="RedOutOptionsGeneral">
+								<Offset>
+									<AbsDimension x="45" y="-10" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+		
+					<CheckButton name="RedOutOptions_HotkeyCheck" inherits="RedOutCheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="RedOutOptionsGeneral">
+								<Offset>
+									<AbsDimension x="45" y="-40" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+
+					<Frame name="RedOutOptions_Range" inherits="RedOutColorOptionTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="RedOutOptionsGeneral">
+								<Offset>
+									<AbsDimension x="35" y="-75" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+		
+					<Frame name="RedOutOptions_Hotkey" inherits="RedOutColorOptionTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="RedOutOptionsGeneral">
+								<Offset>
+									<AbsDimension x="35" y="-105" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</Frame>
+				</Frames>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+
+			<Frame name="RedOutOptionsExt" inherits="OptionsBoxTemplate">
+				<Size>
+					<AbsDimension x="206" y="125"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="14" y="-195"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<CheckButton name="RedOutOptions_ExtCheckBlizzard" inherits="RedOutCheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="RedOutOptionsExt">
+								<Offset>
+									<AbsDimension x="45" y="-10" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="RedOutOptions_ExtCheckCTMod" inherits="RedOutCheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="RedOutOptionsExt">
+								<Offset>
+									<AbsDimension x="45" y="-35" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>
+					<CheckButton name="RedOutOptions_ExtCheckGypsy" inherits="RedOutCheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="RedOutOptionsExt">
+								<Offset>
+									<AbsDimension x="45" y="-60" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>					
+					<CheckButton name="RedOutOptions_ExtCheckTelo" inherits="RedOutCheckTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="TOPLEFT" relativeTo="RedOutOptionsExt">
+								<Offset>
+									<AbsDimension x="45" y="-85" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+					</CheckButton>					
+
+				</Frames>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+
+			<Frame name="RedOutOptionsAdvanced" inherits="OptionsBoxTemplate">
+				<Size>
+					<AbsDimension x="206" y="50"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="14" y="-335"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Frames>
+					<Slider name="RedOutOptions_Interval" inherits="OptionsSliderTemplate">
+						<Anchors>
+							<Anchor point="CENTER" relativePoint="CENTER" relativeTo="RedOutOptionsAdvanced">
+								<Offset>
+									<AbsDimension x="0" y="0"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnLoad>
+								this.disabled = nil;
+								this:SetMinMaxValues(0.05,1.00);
+								this:SetValueStep(0.05);
+							</OnLoad>
+							<OnValueChanged>
+								RedOutOptions_UpdateSlider();
+							</OnValueChanged>
+						</Scripts>
+					</Slider>
+				</Frames>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(0.4, 0.4, 0.4);
+						this:SetBackdropColor(0.15, 0.15, 0.15);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+					
+			<Button name="RedOutOptionsSave" inherits="OptionsButtonTemplate">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="BOTTOM" relativeTo="RedOutOptions">
+						<Offset>
+							<AbsDimension x="-45" y="30" />
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("gsTitleOptionOK");
+						if ( ColorPickerFrame:IsVisible() ) then
+							ColorPickerFrame:Hide();
+						end
+						RedOutOptions_Hide();
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+			<Button name="RedOutOptionsReset" inherits="OptionsButtonTemplate">
+				<Anchors>
+					<Anchor point="CENTER" relativePoint="BOTTOM" relativeTo="RedOutOptions">
+						<Offset>
+							<AbsDimension x="45" y="30"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Scripts>
+					<OnClick>
+						PlaySound("igMainMenuOptionCheckBoxOn");
+						RedOutOptions_Defaults();
+						RedOutOptions_Update();
+					</OnClick>
+				</Scripts>
+			</Button>
+			
+		</Frames>
+		<Scripts>
+			<OnShow>
+				RedOutOptions_Show();
+				RedOutOptions_Update();
+			</OnShow>
+			<OnLoad>
+				RedOutAction_OnLoad();
+			</OnLoad>
+			<OnEvent>
+				RedOutAction_OnEvent(event);
+			</OnEvent>
+		</Scripts>	
+	</Frame>
+	
+	<GameTooltip name="RedOutTooltip" inherits="GameTooltipTemplate" parent="UIParent" hidden="true"/>
+</Ui>

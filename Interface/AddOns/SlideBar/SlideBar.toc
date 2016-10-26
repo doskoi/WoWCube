@@ -1,0 +1,15 @@
+## Title: SlideBar |cff224477(lib)
+## Title-zhCN: 信息增强 |cFF00AAFF滑动栏|r
+## Title-zhTW: 信息增强 |cFF00AAFF滑動欄|r
+## Notes: Allows alternative placement of minimap icons into an expanding bar tab that sits on the side of the screen.
+## OptionalDeps: !Swatter
+##
+## Interface: 30000
+## LoadOnDemand: 0
+## SavedVariables: SlideBarConfig
+##
+## Version: 5.2.4013 (DingoII)
+## Revision: $Id: SlideBar.toc 145 2008-11-05 17:53:28Z Norganna $
+## URL: http://auctioneeraddon.com/dl/
+##
+Load.xml

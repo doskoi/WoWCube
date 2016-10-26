@@ -1,0 +1,199 @@
+if (GetLocale() == "zhCN") then
+	TIPBUDDY_TITLE = "信息跟随";
+	TIPBUDDY_OPTION = "信息跟随设置选项";
+
+	TB_Unknown =		"未知"
+	TB_notspecified =	"未指定";
+	TB_creature =		"动物";
+	TB_tapped =		"接触";
+
+	TB_elite =		"精英";
+	TB_worldboss =	"Boss";
+	TB_rare =		"稀有";
+	TB_rareelite =	"稀有精英";
+
+	TB_minion =		"的仆从";
+	TB_creation =	"的创造物";
+	TB_guardian =	"的守护者";
+	TB_pet =		"的宠物";
+
+	TIPBUDDY_XML_VARIABLECODES = "变量代码";
+	TIPBUDDY_XML_BACKDROPCOLOR = "背景颜色";
+	TIPBUDDY_XML_BORDERCOLOR = "边框颜色";
+	TIPBUDDY_XML_PLAYERS = "玩家";
+	TIPBUDDY_XML_FRIENDLY = "友方";
+	TIPBUDDY_XML_INPARTY = "队友";
+	TIPBUDDY_XML_ENEMY = "敌方";
+	TIPBUDDY_XML_NEUTRAL = "中立";
+	TIPBUDDY_XML_PETS = "宠物";
+	TIPBUDDY_XML_CORPSE = "尸体";
+	TIPBUDDY_XML_NPCS = "NPC/怪物";
+	TIPBUDDY_XML_GENERALOPTION = "普通选项";
+	TIPBUDDY_XML_CURSORPOSITION = "提示框位于鼠标位置";
+	TIPBUDDY_XML_NONUNITTIPS = "非单位目标提示";
+	TIPBUDDY_XML_DISPLAYANCHOR = "显示TipBuddy定位器";
+	TIPBUDDY_XML_RESETANCHOR = "重置TipBuddy定位器";
+	TIPBUDDY_XML_ANCHORINGOPTIONS = "定位器选项";
+	TIPBUDDY_XML_FADINGOPTIONS = "淡入淡出选项";
+	TIPBUDDY_XML_SHOWVARS = "显示变量";
+	TIPBUDDY_XML_HIDEVARS = "隐藏变量";
+	TIPBUDDY_XML_ALPHA = "透明度";
+	TIPBUDDY_XML_ACCEPT = "应用";
+	TIPBUDDY_XML_CANCEL = "取消";
+	TIPBUDDY_XML_OKAY = "确定";
+	TIPBUDDY_XML_RESET = "重置";
+	TIPBUDDY_XML_GENERAL = "常规";
+	TIPBUDDY_XML_ANCHORING = "定位器";
+	TIPBUDDY_XML_FADING = "淡入淡出";
+	TIPBUDDY_XML_TEXTCOLORS = "文字颜色";
+	TIPBUDDY_XML_RESETALL = "全部重置";
+	TIPBUDDY_XML_NAMES = "|cffffffff名字";
+	TIPBUDDY_XML_GUILD = "|cffffffff公会/头衔";
+	TIPBUDDY_XML_LEVEL = "|cffffffff难度等级";
+	TIPBUDDY_XML_CLASSES = "|cffffffff职业";
+	TIPBUDDY_XML_UNIQUE = "|cffffffff唯一单位";
+	TIPBUDDY_XML_OTHER = "|cffffffff其他";
+	TIPBUDDY_XML_STO = "只显示文字";
+	TIPBUDDY_XML_SHT = "显示生命数值";
+	TIPBUDDY_XML_SMT = "显示魔法数值";
+	TIPBUDDY_OPTIONS = "选项";
+	TIPBUDDY_TOOLTIPNU1 = "非单位目标提示\n将会跟随你的鼠标";
+	TIPBUDDY_TOOLTIPNU2 = "非单位目标提示将会\n吸附于TipBuddy定位器";
+	TIPBUDDY_TOOLTIPNU3 = "非单位目标提示将会\n尝试智能吸附于你滑鼠\n悬停按钮或物体上";
+	TIPBUDDY_TOOLTIPNU1 = "在暴雪自身信息框的基础上增强";
+	TIPBUDDY_TOOLTIPNU2 = "简洁小巧的样式";
+	TIPBUDDY_TOOLTIPNU3 = "仅供高级用户使用";
+
+elseif (GetLocale() == "zhTW") then
+	TIPBUDDY_TITLE = "信息跟隨";
+	TIPBUDDY_OPTION = "信息跟隨設置選項";
+
+	TB_Unknown =		"未知"
+	TB_notspecified =	"未指定";
+	TB_creature =		"動物";
+	TB_tapped =		"接觸";
+
+	TB_elite =		"精英";
+	TB_worldboss =	"Boss";
+	TB_rare =		"稀有";
+	TB_rareelite =	"稀有精英";
+
+	TB_minion =		"的僕從";
+	TB_creation =	"的創造物";
+	TB_guardian =	"的守護者";
+	TB_pet =		"的寵物";
+
+	TIPBUDDY_XML_VARIABLECODES = "變量代碼";
+	TIPBUDDY_XML_BACKDROPCOLOR = "背景顏色";
+	TIPBUDDY_XML_BORDERCOLOR = "邊框顏色";
+	TIPBUDDY_XML_PLAYERS = "玩家";
+	TIPBUDDY_XML_FRIENDLY = "友方";
+	TIPBUDDY_XML_INPARTY = "隊友";
+	TIPBUDDY_XML_ENEMY = "敵方";
+	TIPBUDDY_XML_NEUTRAL = "中立";
+	TIPBUDDY_XML_PETS = "寵物";
+	TIPBUDDY_XML_CORPSE = "屍體";
+	TIPBUDDY_XML_NPCS = "NPC/怪物";
+	TIPBUDDY_XML_GENERALOPTION = "普通選項";
+	TIPBUDDY_XML_CURSORPOSITION = "提示框位於滑鼠位置";
+	TIPBUDDY_XML_NONUNITTIPS = "非單位目標提示";
+	TIPBUDDY_XML_DISPLAYANCHOR = "顯示TipBuddy定位器";
+	TIPBUDDY_XML_RESETANCHOR = "重置TipBuddy定位器";
+	TIPBUDDY_XML_ANCHORINGOPTIONS = "定位器選項";
+	TIPBUDDY_XML_FADINGOPTIONS = "淡入淡出選項";
+	TIPBUDDY_XML_SHOWVARS = "顯示變量";
+	TIPBUDDY_XML_HIDEVARS = "隱藏變量";
+	TIPBUDDY_XML_ALPHA = "透明度";
+	TIPBUDDY_XML_ACCEPT = "應用";
+	TIPBUDDY_XML_CANCEL = "取消";
+	TIPBUDDY_XML_OKAY = "確定";
+	TIPBUDDY_XML_RESET = "重置";
+	TIPBUDDY_XML_GENERAL = "常規";
+	TIPBUDDY_XML_ANCHORING = "定位器";
+	TIPBUDDY_XML_FADING = "淡入淡出";
+	TIPBUDDY_XML_TEXTCOLORS = "文字顏色";
+	TIPBUDDY_XML_RESETALL = "全部重置";
+	TIPBUDDY_XML_NAMES = "|cffffffff名字";
+	TIPBUDDY_XML_GUILD = "|cffffffff公會/頭銜";
+	TIPBUDDY_XML_LEVEL = "|cffffffff難度等級";
+	TIPBUDDY_XML_CLASSES = "|cffffffff職業";
+	TIPBUDDY_XML_UNIQUE = "|cffffffff唯一單位";
+	TIPBUDDY_XML_OTHER = "|cffffffff其他";
+	TIPBUDDY_XML_STO = "只顯示文字";
+	TIPBUDDY_XML_SHT = "顯示生命數值";
+	TIPBUDDY_XML_SMT = "顯示魔法數值";
+	TIPBUDDY_OPTIONS = "選項";
+	TIPBUDDY_TOOLTIPNU1 = "非單位目標提示\n將會跟隨你的滑鼠";
+	TIPBUDDY_TOOLTIPNU2 = "非單位目標提示將會\n吸附於TipBuddy定位器";
+	TIPBUDDY_TOOLTIPNU3 = "非單位目標提示將會\n嘗試智能吸附於你滑鼠\n懸停按鈕或物體上";
+	TIPBUDDY_TOOLTIPNU1 = "在暴雪自身信息框的基礎上增強";
+	TIPBUDDY_TOOLTIPNU2 = "簡潔小巧的樣式";
+	TIPBUDDY_TOOLTIPNU3 = "僅供高級用戶使用";
+else
+
+	TIPBUDDY_TITLE = "TipBuddy";
+	TIPBUDDY_OPTION = "TipBuddy Option";
+
+	TB_Unknown =		"Unknown"
+	TB_notspecified =	"Not specified";
+	TB_creature =		"Creature";
+	TB_tapped =		"Tapped";
+
+	TB_elite =		"Elite";
+	TB_worldboss =	"Boss";
+	TB_rare =		"Rare";
+	TB_rareelite =	"Rare Elite";
+
+	TB_minion =		"s Minion";
+	TB_creation =	"s Creation";
+	TB_guardian =	"s Guardian";
+	TB_pet =		"s Pet";
+	
+	TIPBUDDY_XML_VARIABLECODES = "Variable Codes";
+	TIPBUDDY_XML_BACKDROPCOLOR = "Backdrop Color";
+	TIPBUDDY_XML_BORDERCOLOR = "Border Color";
+	TIPBUDDY_XML_PLAYERS = "PLAYERS";
+	TIPBUDDY_XML_FRIENDLY = "Friendly";
+	TIPBUDDY_XML_INPARTY = "InParty";
+	TIPBUDDY_XML_ENEMY = "Enemy";
+	TIPBUDDY_XML_NEUTRAL = "Neutral";
+	TIPBUDDY_XML_PETS = "Pets";
+	TIPBUDDY_XML_CORPSE = "Corpse";
+	TIPBUDDY_XML_NPCS = "NPCs";
+	TIPBUDDY_XML_GENERALOPTION = "GENERAL OPTIONS";
+	TIPBUDDY_XML_CURSORPOSITION = "Tooltip Cursor Position";
+	TIPBUDDY_XML_NONUNITTIPS = "Non-Unit Tooltips";
+	TIPBUDDY_XML_DISPLAYANCHOR = "Display TipBuddyAnchor";
+	TIPBUDDY_XML_RESETANCHOR = "Reset TipBuddyAnchor";
+	TIPBUDDY_XML_ANCHORINGOPTIONS = "ANCHORING OPTIONS";
+	TIPBUDDY_XML_FADINGOPTIONS = "FADING OPTIONS";
+	TIPBUDDY_XML_SHOWVARS = "Show Vars";
+	TIPBUDDY_XML_HIDEVARS = "Hide Vars";
+	TIPBUDDY_XML_ALPHA = "Alpha";
+	TIPBUDDY_XML_ACCEPT = "Apply";
+	TIPBUDDY_XML_CANCEL = "Cancel";
+	TIPBUDDY_XML_OKAY = "Okay";
+	TIPBUDDY_XML_RESET = "Reset";
+	TIPBUDDY_XML_GENERAL = "General";
+	TIPBUDDY_XML_ANCHORING = "Anchoring";
+	TIPBUDDY_XML_FADING = "Fading";
+	TIPBUDDY_XML_TEXTCOLORS = "Text Colors";
+	TIPBUDDY_XML_RESETALL = "Reset All";
+	TIPBUDDY_XML_NAMES = "|cffffffffNames";
+	TIPBUDDY_XML_GUILD = "|cffffffffGuild/Titles";
+	TIPBUDDY_XML_LEVEL = "|cffffffffLevel Difficulty";
+	TIPBUDDY_XML_CLASSES = "|cffffffffClasses";
+	TIPBUDDY_XML_UNIQUE = "|cffffffffUnique Units";
+	TIPBUDDY_XML_OTHER = "|cffffffffOther";
+	TIPBUDDY_XML_STO = "Show Text Only";
+	TIPBUDDY_XML_SHT = "Show Health Text";
+	TIPBUDDY_XML_SMT = "Show Mana Text";
+	TIPBUDDY_OPTIONS = "Options";
+	TIPBUDDY_TOOLTIPNU1 = "Non-Unit tooltips will\nfollow the cursor";
+	TIPBUDDY_TOOLTIPNU2 = "Non-Unit tooltips will\nattach themselves to\nthe TipBuddyAnchor";
+	TIPBUDDY_TOOLTIPNU3 = "Non-Unit tooltips will attempt to\nattach themselves to the button\nor object you have your mouse\nover in a smart position";
+	TIPBUDDY_TOOLTIPNU1 = "Default mode is similar\nto Blizzard's default tooltips,\nbut much more customizable";
+	TIPBUDDY_TOOLTIPNU2 = "Compact Mode has a cleaner,\nsmaller and more unique style.";
+	TIPBUDDY_TOOLTIPNU3 = "This mode is for advanced users\nonly and allows you to customize\nthe tooltip in any way you like.";
+
+end

@@ -1,0 +1,43 @@
+## Interface: 30000
+## Title: Atlas
+## Title-zhTW: 副本地圖
+## Title-zhCN: 副本地图
+## Notes: Instance Map Browser
+## Notes-deDE: Instanzkarten-Browser
+## Notes-frFR: Navigateur de cartes d'instances
+## Notes-zhTW: 副本地圖集, 瀏覽各副本、戰場地圖以及飛行地圖
+## Notes-zhCN: 浏览副本地图，战场地图以及飞行地图
+## Notes-esES: Navegador de Mapas de Mazmorras
+## Version: 1.13.0
+## X-Date: November, 2008
+## Author: Dan Gilbert
+## X-Email: loglow@gmail.com
+## X-Website: http://www.atlasmod.com
+## X-Category: MYADDONS_CATEGORY_MAP
+## X-OptionsFrame: AtlasOptionsFrame
+## SavedVariablesPerCharacter: AtlasOptions
+## OptionalDeps: Titan, myAddOns, EarthFeatureFrame
+## Dependencies: gLimMod
+## LoadOnDemand: 1
+## X-Revision: gLimMod
+
+Locale\Atlas-enUS.lua
+Locale\Atlas-deDE.lua
+Locale\Atlas-frFR.lua
+Locale\Atlas-zhCN.lua
+Locale\Atlas-esES.lua
+Locale\Atlas-zhTW.lua
+Locale\Atlas-ruRU.lua
+AtlasMaps.lua
+
+AtlasDropDown.lua
+
+Atlas.lua
+Atlas.xml
+
+AtlasButton.lua
+AtlasButton.xml
+
+AtlasOptions.lua
+AtlasOptions.xml
+

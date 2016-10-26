@@ -1,0 +1,25 @@
+## Interface: 30000
+## Title: |cFF00FF0AgLimMod API|r
+## Notes: gLimMod API and Function Library
+## Title-zhCN: |cFF00FF0A月光宝盒 函数库|r
+## Notes-zhCN: 月光宝盒所使用的各种函数库
+## Title-zhTW: |cFF00FF0A月光寶盒 函數庫|r
+## Notes-zhTW: 月光寶盒所使用的各種函數庫
+## Dependencies: gLimMod, Ace2, Ace3
+
+## Version: 1.3
+## Author: Bryan
+
+## X-eMail: doskoi.panda@gmail.com
+## X-Date: 2008-10-25
+## X-Website: http://wowcube.cn
+## X-Feedback: 
+## X-Revision: gLimMod
+
+embeds.xml
+
+localization.lua
+Common.lua
+
+
+

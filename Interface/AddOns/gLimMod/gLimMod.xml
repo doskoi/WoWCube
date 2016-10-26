@@ -1,0 +1,132 @@
+﻿<Ui xmlns="http://www.blizzard.com/wow/ui/" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">	
+<!-- 黑眼圈 Create by 05.03.18 Cube -->
+	<Script file="GlobalStrings.lua"/>
+	<Script file="localization.lua"/>
+	<Script file="Registry.lua"/>
+	<Script file="Main.lua"/>
+	<Script file="Config.lua"/>
+	<Script file="Extend.lua"/>
+	<Script file="Fixbugs.lua"/>
+	<Script file="Advertising.lua"/>
+	<Frame name="gLimMinimapFrame" parent="Minimap" enableMouse="true" hidden="false" frameStrata="MEDIUM">
+		<Size>
+			<AbsDimension x="32" y="32"/>
+		</Size>
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="Minimap" relativePoint="RIGHT">
+				<Offset>
+					<AbsDimension x="2" y="0"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Frames>
+			<Button name="gLimMinimapButton">
+				<NormalTexture file="Interface\AddOns\gLimMod\Skins\Cube"/>
+				<PushedTexture file="Interface\AddOns\gLimMod\Skins\CubePush"/>
+				<HighlightTexture alphaMode="ADD" file="Interface\Minimap\UI-Minimap-ZoomButton-Highlight"/>
+				<Size>
+					<AbsDimension x="24" y="24"/>
+				</Size>
+				<Anchors>
+					<Anchor point="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<Layers>
+					<Layer level="BORDER">
+						<Texture name="$parentIcon" file="Interface\WorldMap\WorldMap-Icon">
+							<Size>
+								<AbsDimension x="20" y="20"/>
+							</Size>
+							<Anchors>
+								<Anchor point="CENTER">
+									<Offset>
+										<AbsDimension x="-2" y="1"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<Texture name="$parentBorder" file="Interface\Minimap\MiniMap-TrackingBorder">
+							<Size>
+								<AbsDimension x="52" y="52"/>
+							</Size>
+							<Anchors>
+								<Anchor point="TOPLEFT">
+									<Offset>
+										<AbsDimension x="-4" y="2"/>
+									</Offset>
+								</Anchor>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad>
+						this:RegisterForDrag("RightButton");
+						this.drag = false;
+					</OnLoad>
+					<OnEnter>
+						GameTooltip:SetOwner(this, "ANCHOR_CURSOR");
+						GameTooltip:SetText(GLIM_OPTIONS_TITLE, 0.82, 0.82, 0);
+						GameTooltip:AddLine(GLIM_CUBE_LEFT);
+						GameTooltip:AddLine(GLIM_CUBE_RIGHT, 1, 0.5, 0);
+						GameTooltip:Show();
+					</OnEnter>
+					<OnLeave>
+						GameTooltip:Hide();
+					</OnLeave>
+					<OnDragStart> 
+						this.drag = true;
+					</OnDragStart> 
+					<OnDragStop>
+						this.drag = false;
+					</OnDragStop>
+					<OnUpdate>
+						if(this.drag == true) then
+							CubeButton_BeingDragged();
+						end
+					</OnUpdate>
+					<OnClick>
+						Toggle_gLimConfigFrame();
+					</OnClick>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				this:RegisterEvent("VARIABLES_LOADED");
+			</OnLoad>
+		</Scripts>
+	</Frame>
+	<Button name="CubeMenuButtonOptions" inherits="GameMenuButtonTemplate" parent="GameMenuFrame">
+		<Anchors>
+			<Anchor point="CENTER" relativePoint="TOP">
+				<Offset>
+					<AbsDimension x="0" y="-37"/>
+				</Offset>
+			</Anchor>
+		</Anchors>
+		<Scripts>
+			<OnLoad>
+				GameMenuFrame:SetHeight(GameMenuFrame:GetHeight()+24);
+				GameMenuButtonOptions:ClearAllPoints();
+				GameMenuButtonOptions:SetPoint("TOP", this:GetName(), "BOTTOM", 0, -16);
+			</OnLoad>
+			<OnShow>
+				this:SetText(GLIM_OPTIONS_TITLE);
+			</OnShow>
+			<OnClick>
+				HideUIPanel(GameMenuFrame);
+				PlaySound("igMainMenuOption");
+				Toggle_gLimConfigFrame();
+			</OnClick>
+		</Scripts>
+	</Button>
+</Ui>

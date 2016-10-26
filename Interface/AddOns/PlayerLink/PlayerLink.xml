@@ -1,0 +1,259 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<!--<Script file="localization.lua"/>-->
+	<Script file="PlayerLink.lua"/>
+	<Frame name = "PlayerLinkUpdateFrame">
+		<Scripts>
+			<OnLoad>
+				PlayerLink_OnLoad();
+			</OnLoad>
+			<OnUpdate>
+				PlayerLink_OnUpdate(arg1);
+			</OnUpdate>
+			<OnEvent>
+				PlayerLink_OnEvent(event);
+			</OnEvent>
+		</Scripts>
+	</Frame>
+
+	<Button name="PlayerLinkButtonTemplate" virtual="true">
+		<Size>
+			<AbsDimension x="128" y="16"/>
+		</Size>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture name="$parentHighlight" file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD" setAllPoints="true" hidden="true"/>
+			</Layer>
+			<Layer level="ARTWORK">
+				<Texture name="$parentIcon" hidden="true">
+					<Size>
+						<AbsDimension x="15" y="15"/>
+					</Size>
+					<Anchors>
+						<Anchor point="RIGHT">
+							<Offset>
+								<AbsDimension x="-5" y="0"/>
+							</Offset>
+						</Anchor>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button name="$parentInvisibleButton" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT"/>
+					<Anchor point="BOTTOMRIGHT"/>
+				</Anchors>
+				<Scripts>
+					<OnEnter>
+						UIDropDownMenu_StopCounting(this:GetParent():GetParent());
+						CloseDropDownMenus(this:GetParent():GetParent():GetID() + 1);
+					</OnEnter>
+					<OnLeave>
+						UIDropDownMenu_StartCounting(this:GetParent():GetParent());
+					</OnLeave>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnClick>
+				PlayerLinkButton_OnClick();
+			</OnClick>
+			<OnEnter>
+				getglobal(this:GetName().."Highlight"):Show();
+				UIDropDownMenu_StopCounting(this:GetParent());
+				if ( this.tooltipText ) then
+					GameTooltip_AddNewbieTip(this:GetText(), 1.0, 1.0, 1.0, this.tooltipText, 1);
+				end
+			</OnEnter>
+			<OnLeave>
+				getglobal(this:GetName().."Highlight"):Hide();
+				UIDropDownMenu_StartCounting(this:GetParent());
+				GameTooltip:Hide();
+			</OnLeave>
+		</Scripts>
+		<ButtonText name="$parentNormalText"/>
+		<NormalFont inherits="GameFontHighlightSmall" justifyH="LEFT"/>
+		<HighlightFont inherits="GameFontHighlightSmall" justifyH="LEFT"/>
+		<DisabledFont inherits="GameFontDisableSmall" justifyH="LEFT"/>
+	</Button>
+
+	<Button name="PlayerLink" toplevel="true" frameStrata="FULLSCREEN_DIALOG" hidden="true" enableMouse="true" id="1">
+		<Size>
+			<AbsDimension x="180" y="10"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentBackdrop" setAllPoints="true" hidden="true">
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="11" right="12" top="12" bottom="11"/>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="32"/>
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="32"/>
+					</EdgeSize>
+				</Backdrop>
+			</Frame>
+			<Frame name="$parentMenuBackdrop" setAllPoints="true">
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+						this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Button name="$parentButton1" inherits="PlayerLinkButtonTemplate" id="1"/>
+			<Button name="$parentButton2" inherits="PlayerLinkButtonTemplate" id="2"/>
+			<Button name="$parentButton3" inherits="PlayerLinkButtonTemplate" id="3"/>
+			<Button name="$parentButton4" inherits="PlayerLinkButtonTemplate" id="4"/>
+			<Button name="$parentButton5" inherits="PlayerLinkButtonTemplate" id="5"/>
+			<Button name="$parentButton6" inherits="PlayerLinkButtonTemplate" id="6"/>
+			<Button name="$parentButton7" inherits="PlayerLinkButtonTemplate" id="7"/>
+			<Button name="$parentButton8" inherits="PlayerLinkButtonTemplate" id="8"/>
+			<Button name="$parentButton9" inherits="PlayerLinkButtonTemplate" id="9"/>
+			<Button name="$parentButton10" inherits="PlayerLinkButtonTemplate" id="10"/>
+			<Button name="$parentButton11" inherits="PlayerLinkButtonTemplate" id="11"/>
+			<Button name="$parentButton12" inherits="PlayerLinkButtonTemplate" id="12"/>
+			<Button name="$parentButton13" inherits="PlayerLinkButtonTemplate" id="13"/>
+			<Button name="$parentButton14" inherits="PlayerLinkButtonTemplate" id="14"/>
+			<Button name="$parentButton15" inherits="PlayerLinkButtonTemplate" id="15"/>
+			<Button name="$parentButton16" inherits="PlayerLinkButtonTemplate" id="16"/>
+			<Button name="$parentButton17" inherits="PlayerLinkButtonTemplate" id="17"/>
+			<Button name="$parentButton18" inherits="PlayerLinkButtonTemplate" id="18"/>
+			<Button name="$parentButton19" inherits="PlayerLinkButtonTemplate" id="19"/>
+			<Button name="$parentButton20" inherits="PlayerLinkButtonTemplate" id="20"/>
+		</Frames>
+		<Scripts>
+			<OnClick>
+				this:Hide();
+			</OnClick>
+			<OnEnter>
+				UIDropDownMenu_StopCounting(this);
+			</OnEnter>
+			<OnLeave>
+				UIDropDownMenu_StartCounting(this);
+			</OnLeave>
+			<OnUpdate>
+				UIDropDownMenu_OnUpdate(self, arg1);
+			</OnUpdate>
+			<OnShow>
+				for i=1, FRIENDSMENU_MAXBUTTONS do
+					getglobal(this:GetName().."Button"..i):SetWidth(this.maxWidth);
+				end
+				this:SetWidth(this.maxWidth+15);
+				this.showTime = nil;
+			</OnShow>
+			<OnHide>
+				this:ClearAllPoints();
+			</OnHide>
+		</Scripts>
+	</Button>
+
+	<Button name="PlayerLinkSecureButtonTemplate" inherits="PlayerLinkButtonTemplate, SecureActionButtonTemplate" virtual="true">
+		<Scripts>
+			<OnLoad>
+				this:HookScript("OnClick", PlayerLinkButton_OnClick);
+				this:RegisterForClicks("AnyUp");
+			</OnLoad>
+		</Scripts>
+	</Button>
+
+	<Button name="PlayerLinkSecure" toplevel="true" frameStrata="FULLSCREEN_DIALOG" hidden="true" enableMouse="true" id="2">
+		<Size>
+			<AbsDimension x="180" y="10"/>
+		</Size>
+		<Frames>
+			<Frame name="$parentBackdrop" setAllPoints="true" hidden="true">
+				<Backdrop bgFile="Interface\DialogFrame\UI-DialogBox-Background" edgeFile="Interface\DialogFrame\UI-DialogBox-Border" tile="true">
+					<BackgroundInsets>
+						<AbsInset left="11" right="12" top="12" bottom="11"/>
+					</BackgroundInsets>
+					<TileSize>
+						<AbsValue val="32"/>
+					</TileSize>
+					<EdgeSize>
+						<AbsValue val="32"/>
+					</EdgeSize>
+				</Backdrop>
+			</Frame>
+			<Frame name="$parentMenuBackdrop" setAllPoints="true">
+				<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
+					<EdgeSize>
+						<AbsValue val="16"/>
+					</EdgeSize>
+					<TileSize>
+						<AbsValue val="16"/>
+					</TileSize>
+					<BackgroundInsets>
+						<AbsInset left="5" right="5" top="5" bottom="5"/>
+					</BackgroundInsets>
+				</Backdrop>
+				<Scripts>
+					<OnLoad>
+						this:SetBackdropBorderColor(TOOLTIP_DEFAULT_COLOR.r, TOOLTIP_DEFAULT_COLOR.g, TOOLTIP_DEFAULT_COLOR.b);
+						this:SetBackdropColor(TOOLTIP_DEFAULT_BACKGROUND_COLOR.r, TOOLTIP_DEFAULT_BACKGROUND_COLOR.g, TOOLTIP_DEFAULT_BACKGROUND_COLOR.b);
+					</OnLoad>
+				</Scripts>
+			</Frame>
+			<Button name="$parentButton1" inherits="PlayerLinkSecureButtonTemplate" id="1"/>
+			<Button name="$parentButton2" inherits="PlayerLinkSecureButtonTemplate" id="2"/>
+			<Button name="$parentButton3" inherits="PlayerLinkSecureButtonTemplate" id="3"/>
+			<Button name="$parentButton4" inherits="PlayerLinkSecureButtonTemplate" id="4"/>
+			<Button name="$parentButton5" inherits="PlayerLinkSecureButtonTemplate" id="5"/>
+			<Button name="$parentButton6" inherits="PlayerLinkSecureButtonTemplate" id="6"/>
+			<Button name="$parentButton7" inherits="PlayerLinkSecureButtonTemplate" id="7"/>
+			<Button name="$parentButton8" inherits="PlayerLinkSecureButtonTemplate" id="8"/>
+			<Button name="$parentButton9" inherits="PlayerLinkSecureButtonTemplate" id="9"/>
+			<Button name="$parentButton10" inherits="PlayerLinkSecureButtonTemplate" id="10"/>
+			<Button name="$parentButton11" inherits="PlayerLinkSecureButtonTemplate" id="11"/>
+			<Button name="$parentButton12" inherits="PlayerLinkSecureButtonTemplate" id="12"/>
+			<Button name="$parentButton13" inherits="PlayerLinkSecureButtonTemplate" id="13"/>
+			<Button name="$parentButton14" inherits="PlayerLinkSecureButtonTemplate" id="14"/>
+			<Button name="$parentButton15" inherits="PlayerLinkSecureButtonTemplate" id="15"/>
+			<Button name="$parentButton16" inherits="PlayerLinkSecureButtonTemplate" id="16"/>
+			<Button name="$parentButton17" inherits="PlayerLinkSecureButtonTemplate" id="17"/>
+			<Button name="$parentButton18" inherits="PlayerLinkSecureButtonTemplate" id="18"/>
+			<Button name="$parentButton19" inherits="PlayerLinkSecureButtonTemplate" id="19"/>
+			<Button name="$parentButton20" inherits="PlayerLinkSecureButtonTemplate" id="20"/>
+		</Frames>
+		<Scripts>
+			<OnClick>
+				this:Hide();
+			</OnClick>
+			<OnEnter>
+				UIDropDownMenu_StopCounting(this);
+			</OnEnter>
+			<OnLeave>
+				UIDropDownMenu_StartCounting(this);
+			</OnLeave>
+			<OnUpdate>
+				UIDropDownMenu_OnUpdate(self, arg1);
+			</OnUpdate>
+			<OnShow>
+				for i=1, FRIENDSMENU_MAXBUTTONS do
+					getglobal(this:GetName().."Button"..i):SetWidth(this.maxWidth);
+				end
+				this:SetWidth(this.maxWidth+15);
+				this.showTime = nil;
+			</OnShow>
+			<OnHide>
+				this:ClearAllPoints();
+			</OnHide>
+		</Scripts>
+	</Button>
+
+</Ui>

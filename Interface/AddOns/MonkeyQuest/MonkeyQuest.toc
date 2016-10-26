@@ -1,0 +1,16 @@
+## Interface: 30000
+## Title: MonkeyQuest v2.9
+## Notes: Displays your quests for quick viewing. (http://www.toctastic.net/)
+## Title-zhCN: 任务追踪
+## Notes-zhCN: 追踪任务完成情况
+## Title-zhTW: 任務追蹤
+## Notes-zhTW: 追蹤任務完成情況
+## Author: Trentin (trentin@toctastic.net)
+## SavedVariables: MonkeyQuestConfig
+## LoadWith: MonkeyLibrary
+## LoadOnDemand: 1 
+## Dependencies: MonkeyLibrary
+## OptionalDeps: aftt_extreme, BhaldieInfoBar, gLimMod
+## X-Revision: gLimMod
+MonkeyQuest.xml
+

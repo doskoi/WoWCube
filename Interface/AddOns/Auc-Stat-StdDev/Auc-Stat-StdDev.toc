@@ -1,0 +1,16 @@
+## Title: Auc:Stat:Std Deviation
+## Title-zhCN: 拍卖助手 |cFF00AAFF数据检测|r
+## Notes: Statistics extension for Auctioneer that uses the variance to detect outliers
+##
+## Interface: 30000
+## LoadOnDemand: 0
+## Disabled: 1
+## Dependencies: Auc-Advanced
+## SavedVariables: AucAdvancedStatStdDevData
+##
+## Version: 5.2.4013 (DingoII)
+## Revision: $Id: Auc-Stat-StdDev.toc 3573 2008-10-09 11:25:57Z Norganna $
+## URL: http://auctioneeraddon.com/
+##
+
+StatStdDev.lua

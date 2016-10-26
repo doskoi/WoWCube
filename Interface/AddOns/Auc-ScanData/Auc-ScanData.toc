@@ -1,0 +1,16 @@
+## Title: Auc:ScanData
+## Title-zhCN: 拍卖助手 |cFF00AAFF数据扫描|r
+## Notes: Allows Auc-Advanced to delay loading the [probably] large auction scan dataset until it is needed. [5.1.3908] This AddOn is licensed under the GNU GPL, see GPL.txt for details.
+##
+## Interface: 30000
+## LoadOnDemand: 1
+## SavedVariables: AucScanData
+## Dependencies: Auc-Advanced
+## OptionalDeps: Auc-Util-PriceLevel
+##
+## Version: 5.2.4013 (DingoII)
+## Revision: $Id: Auc-ScanData.toc 3576 2008-10-10 03:07:13Z aesir $
+## URL: http://auctioneeraddon.com/
+##
+StringRope.lua
+ScanData.lua

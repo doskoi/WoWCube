@@ -1,0 +1,12 @@
+## Interface: 30000
+## Title: Red Out
+## Title-zhCN: 施法距离
+## Title-zhTW: 施法距離
+## Notes: Action Button Range Shading
+## Notes-zhCN: 使技能按钮当超过施法距离的时候变成红色.
+## Notes-zhTW: 使技能按鈕當超過施法距離的時候變成紅色.
+## Author: jINx - http://jinx.purgatorylan.org/wow/
+## Dependencies: gLimMod
+## SavedVariables: RedOut
+## X-Revision: gLimMod
+RedOut.xml

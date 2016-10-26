@@ -1,0 +1,23 @@
+## Interface: 30000
+## Title: MapNotes
+## Title-zhCN: 地图标记
+## Title-zhTW: 地圖標記
+## Author: Telic (originally ciphersimian)
+## eMail: telic@hotmail.co.uk
+## Version: 5.02.30000
+## URL: See README for download sites
+## Notes: Adds a note system to the WorldMap - Other AddOns can also now 'Plug In' and allow notes to be made on their frames eg AlphaMap
+## Notes-zhCN: 在世界地图上增加标记和注释.
+## Notes-zhTW: 在世界地圖上增加標記和註釋.
+## RequiredDeps: gLimMod
+## OptionalDeps: Thottbot, myAddOns, SilverTrack
+## DefaultState: enabled
+## SavedVariables: MapNotes_Data_Notes, MapNotes_Data_Lines, MapNotes_Data, MapNotes_Lines, MapNotes_Options, MapNotes_MiniNote_Data, MapNotes_Undelete_Info
+## X-Revision: gLimMod
+MapNotesTemplates.xml
+
+MapNotesEditFrame.xml
+MapNotesMiniNoteFrame.xml
+
+MapNotesOptionsFrame.xml
+MapNotesSendFrame.xml

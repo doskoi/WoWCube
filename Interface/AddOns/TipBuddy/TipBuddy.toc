@@ -1,0 +1,24 @@
+## Interface: 30000
+## Title: TipBuddy
+## Notes: An enhanced, configurable unit tooltip mod.
+## Title-zhCN: 提示信息
+## Notes-zhCN: 改变鼠标提示信息的显示位置和颜色并添加更多的内容。
+## Title-zhTW: 提示信息
+## Notes-zhTW: 改變鼠標提示信息的顯示位置和顏色並添加更多的內容。
+## Version: 2.39
+## Author: Chester
+## LoadOnDemand: 0 
+## SavedVariables: TipBuddy_SavedVars
+## Dependencies: gLimMod
+## OptionalDeps: myAddOns, MobInfo2, MobHealth, MobHealth2
+## X-Revision: gLimMod
+TipBuddy_Initialize.lua
+TipBuddy_GlobalFunctions.lua
+TipBuddy_Anchor.lua
+TipBuddy_OptionsFrame.lua
+TipBuddy_Colors.lua
+TipBuddy_Variables.lua
+localization.lua
+TipBuddy.lua
+TipBuddy_Main.xml
+TipBuddy_OptionsFrame.xml

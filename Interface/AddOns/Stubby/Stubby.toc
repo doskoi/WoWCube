@@ -1,0 +1,17 @@
+## Title: Stubby
+## Title-zhCN: 信息增强 |cFF00AAFF动态加载|r
+## Title-zhTW: 信息增强 |cFF00AAFF動態加載|r
+## Notes: Allows on-demand addons to load automatically based upon simple event notification hooks [5.1.3908] This AddOn is licensed under the GNU GPL, see GPL.txt for details.
+## Interface: 30000
+## OptionalDeps: !nLog, DebugLib
+## SavedVariables: StubbyConfig
+##
+## Version: 5.2.4013 (DingoII)
+## Revision: $Id: Stubby.toc 130 2008-10-11 12:38:07Z Norganna $
+## URL: http://auctioneeraddon.com/dl/Stubby
+## X-Revision: gLimMod
+Support\Load.xml
+
+Libs\Load.xml
+Stubby.lua
+Stubby.xml
